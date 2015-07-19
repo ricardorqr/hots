@@ -1,0 +1,31 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<h:outputScript library="javascript" name="jquery-2.1.4.js" target="body" />
+		<h:outputStylesheet library="css" name="css.css" ></h:outputStylesheet>
+		
+		<title>Título 1</title>
+	</h:head>
+	<h:body>
+		<p:messages autoUpdate="true" closable="true" />
+		
+		<h:form>	
+			<p:panel header="Autenticar">
+				<h:panelGrid id="gLogin" columns="3" >
+					<p:outputLabel id="olLogin" for="itLogin" value="Login" />
+					<p:inputText id="itLogin" value="#{loginBean.login}" required="true" label="Login" />
+					<p:message for="itLogin" />
+					
+					<p:outputLabel id="olSenha" for="pLogin" value="Senha" />
+					<p:password id="pLogin" value="#{loginBean.senha}" required="true" label="Senha" />
+					<p:message for="pLogin" />
+				</h:panelGrid>
+				
+				<p:commandButton value="Ok" action="#{loginBean.logar}" update="gLogin" />
+			</p:panel>
+		</h:form>
+	</h:body>
+</html>

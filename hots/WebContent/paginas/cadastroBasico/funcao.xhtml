@@ -1,0 +1,50 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+	<ui:define name="centro">
+		<h:form id="formNovaFuncao" >
+			<p:panel id="panelNovaFuncao" header="Nova Função">
+				<h:panelGrid id="panelGridFuncao" columns="3">
+					<p:outputLabel id="olFuncao" for="itFuncao" value="Função" />
+					<p:inputText id="itFuncao" value="#{funcaoBean.funcao.deFuncao}"
+						label="Função" required="true" />
+					<p:message for="itFuncao" display="icon" />
+					
+ 					<p:outputLabel id="olFlagAtivo" for="sorFlagAtivo" value="Ativo" />
+					<p:selectOneRadio id="sorFlagAtivo" value="#{funcaoBean.funcao.flagAtivo}"
+						disabled="#{funcaoBean.funcao.idFuncao == null ? true : false}"
+						required="true">
+			            <f:selectItem itemLabel="Sim" itemValue="S" />
+			            <f:selectItem itemLabel="Não" itemValue="N" />
+			        </p:selectOneRadio>
+					<p:message for="sorFlagAtivo" display="icon" />
+				</h:panelGrid>
+
+				<p:commandButton value="Ok" action="#{funcaoBean.salvar}" update="panelNovaFuncao"
+					icon="ui-icon-check" />
+			</p:panel>
+		</h:form>
+		
+		<h:form>
+			<p:panel header="Funções Cadastradas">
+				<p:dataTable var="funcao" value="#{funcaoBean.funcoes}" selectionMode="single" 
+					rowKey="#{funcao.idFuncao}">
+					<p:column headerText="Nome">
+						<h:outputText value="#{funcao.deFuncao}" />
+					</p:column>
+		
+					<p:column headerText="Ativo">
+						<h:outputText value="#{funcao.flagAtivo == 'S' ? 'Sim' : 'Não'}" />
+					</p:column>
+		
+					<p:column headerText="Opções">
+						<p:commandLink action="#{funcaoBean.editarFuncao(funcao)}" ajax="false" 
+						update="panelNovaFuncao" value="Editar"/>
+					</p:column>
+				</p:dataTable>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

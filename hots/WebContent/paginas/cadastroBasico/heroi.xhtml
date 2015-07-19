@@ -1,0 +1,36 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/template/template.xhtml">
+	<ui:define name="centro">
+		<h:form>
+			<p:panel header="Novo Heroi" >
+				<h:panelGrid id="gHeroi" columns="3" >
+					<p:outputLabel id="olNome" for="itNome" value="Nome" />
+					<p:inputText id="itNome" value="#{heroiBean.heroi.nome}" required="true" label="Nome" />
+					<p:message for="itNome" />
+					
+					<p:outputLabel id="olDano" for="itDano" value="Dano" />
+					<p:inputText id="itDano" value="#{heroiBean.heroi.dano}" required="true" label="Dano" />
+					<p:message for="itDano" />
+					
+					<p:outputLabel id="olUtilidade" for="itUtilidade" value="Utilidade" />
+					<p:inputText id="itUtilidade" value="#{heroiBean.heroi.utilidade}" required="true" label="Utilidade" />
+					<p:message for="itUtilidade" />
+					
+					<p:outputLabel id="olSobrevivencia" for="itSobrevivencia" value="Sobrevivencia" />
+					<p:inputText id="itSobrevivencia" value="#{heroiBean.heroi.sobrevivencia}" required="true" label="Sobrevivencia" />
+					<p:message for="itSobrevivencia" />
+					
+					<p:outputLabel id="olComplexidade" for="itComplexidade" value="Complexidade" />
+					<p:inputText id="itComplexidade" value="#{heroiBean.heroi.complexidade}" required="true" label="Complexidade" />
+					<p:message for="itComplexidade" />
+				</h:panelGrid>
+				
+				<p:commandButton value="Ok" action="#{heroiBean.salvar}" update="gHeroi" />
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
