@@ -10,7 +10,7 @@ import br.com.hots.dao.FuncaoDAO;
 import br.com.hots.modelo.Funcao;
 
 @Named
-public class CadastrarNovaFuncaoNegocio implements Serializable {
+public class FuncaoNegocio implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -25,8 +25,16 @@ public class CadastrarNovaFuncaoNegocio implements Serializable {
 		funcaoDAO.atualizar(funcao);
 	}
 	
-	public List<Funcao> getListaAtivos() {
-		return funcaoDAO.listarTodosAtivos();
+	public void removerFuncao(Integer id) {
+		funcaoDAO.remover(id);
+	}
+	
+	public List<Funcao> getListaTodos() {
+		return funcaoDAO.getListaTodos();
+	}
+	
+	public List<Funcao> getListaTodosAtivos() {
+		return funcaoDAO.getListaTodosAtivos();
 	}
 
 }

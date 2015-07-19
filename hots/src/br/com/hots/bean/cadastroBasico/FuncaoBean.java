@@ -3,14 +3,13 @@ package br.com.hots.bean.cadastroBasico;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.hots.generico.bean.GenericBean;
 import br.com.hots.modelo.Funcao;
-import br.com.hots.negocio.cadastroBasico.CadastrarNovaFuncaoNegocio;
+import br.com.hots.negocio.cadastroBasico.FuncaoNegocio;
 
 @Named
 @ViewScoped
@@ -19,21 +18,9 @@ public class FuncaoBean extends GenericBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Inject
-	private CadastrarNovaFuncaoNegocio negocio;
+	private FuncaoNegocio negocio;
 	private Funcao funcao = new Funcao();
 	private List<Funcao> funcoes;
-	private boolean exibirNaTela = true;
-	
-	@PostConstruct
-    public void init() {
-		if (funcao.getIdFuncao() == null) {
-//			exibirNaTela = false;
-			funcao.setFlagAtivo("S");
-		} else {
-			funcao.setFlagAtivo("N");
-//			exibirNaTela = true;
-		}
-    }
 	
 	public void salvar() {
 		try {
@@ -43,29 +30,35 @@ public class FuncaoBean extends GenericBean implements Serializable {
 				negocio.editarFuncao(funcao);
 			}
 			
-			funcoes = getFuncoes();
-			limpar();
+			limparTela();
 		}
 		catch (Exception e) {
 			addMensagemERROR("ERRO: " + e.getLocalizedMessage());
 		}
 	}
 	
-	public void editarFuncao(Funcao funcao) {
-		System.out.println(funcao.getDeFuncao());
-		System.out.println(funcao.getIdFuncao());
-		this.funcao = funcao;
-    }
+	public void removerPermanentemente() {
+		try {
+			negocio.removerFuncao(funcao.getIdFuncao());
+			
+			limparTela();
+		}
+		catch (Exception e) {
+			addMensagemERROR("ERRO: " + e.getLocalizedMessage());
+		}
+	}
 	
 	public List<Funcao> getFuncoes() {
-		if (funcoes == null) {
-			funcoes = negocio.getListaAtivos();
+		if (funcoes == null || funcoes.isEmpty()) {
+			funcoes = negocio.getListaTodos();
 		}
+		
 		return funcoes;
 	}
 	
-	private void limpar() {
+	private void limparTela() {
 		funcao = new Funcao();
+		funcoes = negocio.getListaTodos();
 	}
 
 	public Funcao getFuncao() {
@@ -74,14 +67,6 @@ public class FuncaoBean extends GenericBean implements Serializable {
 
 	public void setFuncao(Funcao funcao) {
 		this.funcao = funcao;
-	}
-
-	public boolean isExibirNaTela() {
-		return exibirNaTela;
-	}
-
-	public void setExibirNaTela(boolean exibirNaTela) {
-		this.exibirNaTela = exibirNaTela;
 	}
 
 }

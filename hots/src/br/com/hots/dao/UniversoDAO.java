@@ -7,45 +7,45 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
-import br.com.hots.modelo.Funcao;
+import br.com.hots.modelo.Universo;
 
 @Stateless
-public class FuncaoDAO implements Serializable {
+public class UniversoDAO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Inject
 	private EntityManager manager;
 
-	public Funcao buscar(Integer id) {
-		return manager.find(Funcao.class, id);
+	public Universo buscar(Integer id) {
+		return manager.find(Universo.class, id);
 	}
 
-	public void salvar(Funcao entidade) {
+	public void salvar(Universo entidade) {
 		manager.joinTransaction();
 		manager.persist(entidade);
 	}
 
-	public void atualizar(Funcao entidade) {
+	public void atualizar(Universo entidade) {
 		manager.joinTransaction();
 		manager.merge(entidade);
 	}
 	
 	public void remover(Integer id) {
 		manager.joinTransaction();
-		Funcao funcao = buscar(id);
-		manager.remove(funcao);
+		Universo universo = buscar(id);
+		manager.remove(universo);
 	}
 
-	public List<Funcao> getListaTodos() {
+	public List<Universo> getListaTodos() {
 		return manager.createQuery(
-				" select f from Funcao f order by f.deFuncao ", Funcao.class)
+				" select u from Universo u order by u.deUniverso ", Universo.class)
 				.getResultList();
 	}
 
-	public List<Funcao> getListaTodosAtivos() {
+	public List<Universo> getListaTodosAtivos() {
 		return manager.createQuery(
-				" select f from Funcao f where f.flagAtivo = 'S' order by f.deFuncao ", Funcao.class)
+				" select u from Universo u where u.flagAtivo = 'S' order by u.deUniverso ", Universo.class)
 				.getResultList();
 	}
 

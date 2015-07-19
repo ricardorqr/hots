@@ -14,6 +14,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -53,16 +55,16 @@ public class Funcao implements java.io.Serializable {
 		this.herois = herois;
 	}
 	
-//	@PrePersist
-//	public void atualizaCamposParaInsercao() {
-//		setDataCadastro(Calendar.getInstance());
-//		setFlagAtivo("S");
-//	}
-//
-//	@PreUpdate
-//	public void atualizaCamposParaAtualizacao() {
-//		setDataCadastro(Calendar.getInstance());
-//	}
+	@PrePersist
+	public void atualizaCamposParaInsercao() {
+		setDataCadastro(Calendar.getInstance());
+		setFlagAtivo("S");
+	}
+
+	@PreUpdate
+	public void atualizaCamposParaAtualizacao() {
+		setDataCadastro(Calendar.getInstance());
+	}
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
