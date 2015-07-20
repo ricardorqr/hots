@@ -16,7 +16,7 @@ public class LoginBean extends GenericBean {
 		
 		addObjetoSessao("login", login);
 		
-		return "/paginas/principal.xhtml?faces-redirect=true";
+		return "/template/principal.xhtml?faces-redirect=true";
 	}
 
 	public String getLogin() {

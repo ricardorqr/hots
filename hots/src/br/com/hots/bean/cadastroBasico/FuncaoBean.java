@@ -56,6 +56,14 @@ public class FuncaoBean extends GenericBean implements Serializable {
 		return funcoes;
 	}
 	
+	public List<Funcao> getListaFuncaoAtiva() {
+		if (funcoes == null || funcoes.isEmpty()) {
+			funcoes = negocio.getListaTodosAtivos();
+		}
+		
+		return funcoes;
+	}
+	
 	private void limparTela() {
 		funcao = new Funcao();
 		funcoes = negocio.getListaTodos();

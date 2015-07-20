@@ -2,7 +2,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+	xmlns:p="http://primefaces.org/ui" template="/template/principal.xhtml">
 	<ui:define name="centro">
 		<p:panel id="panelNovoUniverso" header="Novo Universo">
 			<h:form id="formNovoUniverso">
@@ -32,7 +32,7 @@
 			<h:form id="formGridUniversos">
 				<p:dataTable var="universo" value="#{universoBean.universos}" 
 					rowKey="#{universo.idUniverso}" emptyMessage="Sem registros cadastrados">
-					<p:column headerText="Nome">
+					<p:column headerText="Nome" sortBy="#{universo.deUniverso}">
 						<h:outputText value="#{universo.deUniverso}" />
 					</p:column>
 

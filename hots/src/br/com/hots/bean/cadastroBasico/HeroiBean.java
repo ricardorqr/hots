@@ -1,23 +1,24 @@
 package br.com.hots.bean.cadastroBasico;
 
+import java.io.Serializable;
+
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.hots.generico.bean.GenericBean;
 import br.com.hots.modelo.Heroi;
-import br.com.hots.negocio.cadastroBasico.CadastrarNovoHeroi;
+import br.com.hots.negocio.cadastroBasico.HeroiNegocio;
 
 @Named
-public class HeroiBean extends GenericBean {
+@ViewScoped
+public class HeroiBean extends GenericBean implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	@Inject
-	private CadastrarNovoHeroi cadastrarNovoHeroi;
+	private HeroiNegocio cadastrarNovoHeroi;
 	private Heroi heroi = new Heroi();
-	
-	public void salvar() {
-		System.out.println(heroi);
-		cadastrarNovoHeroi.cadastrarNovoHeroi(heroi);
-	}
+	private Integer idFuncao;
 
 	public Heroi getHeroi() {
 		return heroi;
@@ -27,8 +28,12 @@ public class HeroiBean extends GenericBean {
 		this.heroi = heroi;
 	}
 	
-	public void limpar() {
-		heroi = new Heroi();
+	public Integer getIdFuncao() {
+		return idFuncao;
+	}
+
+	public void setIdFuncao(Integer idFuncao) {
+		this.idFuncao = idFuncao;
 	}
 	
 }

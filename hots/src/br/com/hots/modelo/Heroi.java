@@ -16,6 +16,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -74,6 +76,17 @@ public class Heroi implements java.io.Serializable {
 		this.dataCadastro = dataCadastro;
 		this.flagAtivo = flagAtivo;
 		this.times = times;
+	}
+	
+	@PrePersist
+	public void atualizaCamposParaInsercao() {
+		setDataCadastro(Calendar.getInstance());
+		setFlagAtivo("S");
+	}
+
+	@PreUpdate
+	public void atualizaCamposParaAtualizacao() {
+		setDataCadastro(Calendar.getInstance());
 	}
 
 	@Id

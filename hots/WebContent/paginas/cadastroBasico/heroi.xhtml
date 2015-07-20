@@ -2,35 +2,31 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui" 
-	template="/template/template.xhtml">
+	xmlns:p="http://primefaces.org/ui" template="/template/principal.xhtml">
 	<ui:define name="centro">
-		<h:form>
-			<p:panel header="Novo Heroi" >
-				<h:panelGrid id="gHeroi" columns="3" >
-					<p:outputLabel id="olNome" for="itNome" value="Nome" />
-					<p:inputText id="itNome" value="#{heroiBean.heroi.nome}" required="true" label="Nome" />
-					<p:message for="itNome" />
-					
-					<p:outputLabel id="olDano" for="itDano" value="Dano" />
-					<p:inputText id="itDano" value="#{heroiBean.heroi.dano}" required="true" label="Dano" />
-					<p:message for="itDano" />
-					
-					<p:outputLabel id="olUtilidade" for="itUtilidade" value="Utilidade" />
-					<p:inputText id="itUtilidade" value="#{heroiBean.heroi.utilidade}" required="true" label="Utilidade" />
-					<p:message for="itUtilidade" />
-					
-					<p:outputLabel id="olSobrevivencia" for="itSobrevivencia" value="Sobrevivencia" />
-					<p:inputText id="itSobrevivencia" value="#{heroiBean.heroi.sobrevivencia}" required="true" label="Sobrevivencia" />
-					<p:message for="itSobrevivencia" />
-					
-					<p:outputLabel id="olComplexidade" for="itComplexidade" value="Complexidade" />
-					<p:inputText id="itComplexidade" value="#{heroiBean.heroi.complexidade}" required="true" label="Complexidade" />
-					<p:message for="itComplexidade" />
+		<p:panel header="Novo Heroi">
+			<h:form id="formNovoHeroi">
+				<h:panelGrid id="panelGrigNovoHeroi" columns="3">
+					<p:outputLabel id="olFuncao" for="somFuncao" value="Função" />
+					<p:selectOneMenu id="somFuncao" value="#{heroiBean.idFuncao}">
+						<f:selectItem itemLabel=" -- Selecione -- " itemValue=""/>
+            			<f:selectItems value="#{funcaoBean.listaFuncaoAtiva}" var="funcao" 
+            				itemLabel="#{funcao.deFuncao}" itemValue="#{funcao.idFuncao}" />
+					</p:selectOneMenu>
+					<p:message for="somFuncao" display="icon" />
+			        
+			        <h:selectOneMenu value="#{heroiBean.idFuncao}"
+						id="timeFutebol">
+						<f:selectItem itemValue="Corinthians" />
+						<f:selectItem itemValue="Flamengo" />
+						<f:selectItem itemValue="Palmeiras" />
+						<f:selectItem itemValue="Santos" />
+						<f:selectItem itemValue="São Paulo" />
+						<f:selectItem itemValue="Vasco" />
+						<f:selectItem itemValue="Outro" />
+					</h:selectOneMenu>
 				</h:panelGrid>
-				
-				<p:commandButton value="Ok" action="#{heroiBean.salvar}" update="gHeroi" />
-			</p:panel>
-		</h:form>
+			</h:form>
+		</p:panel>
 	</ui:define>
 </ui:composition>
