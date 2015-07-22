@@ -3,30 +3,32 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-	<p:toolbar>
-		<p:toolbarGroup align="center">
-			<p:outputLabel id="olUsuario" for="itUsuario" value="Usuário" />
-			<p:inputText id="itUsuario" value="Rico Teste" readonly="true" />
-			
-			<p:separator />
-			
-			<p:outputLabel id="olPerfil" for="itPerfil" value="Perfil" />
-			<p:inputText id="itPerfil" value="Perfil" readonly="true" />
-			
-			<p:separator />
-			
-			<p:outputLabel id="olUltimoAcesso" for="itUltimoAcesso" value="Ultimo Acesso" />
-			<p:inputText id="itUltimoAcesso" value="12/05/1014" readonly="true" />
-			
-			<p:separator />
-			
-			<p:outputLabel id="olVersao" for="itVersao" value="Versão" />
-			<p:inputText id="itVersao" value="1.9" readonly="true" />
-			
-			<p:separator />
-			
-			<p:outputLabel id="olBase" for="itBase" value="Base de Dados" />
-			<p:inputText id="itBase" value="SQLSRV-DESENV06" readonly="true" />
-		</p:toolbarGroup>
-	</p:toolbar>
+	<h:form>
+		<p:toolbar>
+			<p:toolbarGroup align="center">
+				<p:outputLabel id="olUsuario" for="itUsuario" value="Usuário" />
+				<p:inputText id="itUsuario" value="Rico Teste" readonly="true" />
+				
+				<p:separator />
+				
+				<p:outputLabel id="olPerfil" for="itPerfil" value="Perfil" />
+				<p:inputText id="itPerfil" value="Perfil" readonly="true" />
+				
+				<p:separator />
+				
+				<p:outputLabel id="olUltimoAcesso" for="itUltimoAcesso" value="Ultimo Acesso" />
+				<p:inputText id="itUltimoAcesso" value="12/05/1014" readonly="true" />
+				
+				<p:separator />
+				
+				<p:outputLabel id="olVersao" for="itVersao" value="Versão" />
+				<p:inputText id="itVersao" value="1.9" readonly="true" />
+				
+				<p:separator />
+				
+				<p:outputLabel id="olBase" for="itBase" value="Base de Dados" />
+				<p:inputText id="itBase" value="SQLSRV-DESENV06" readonly="true" />
+			</p:toolbarGroup>
+		</p:toolbar>
+	</h:form>
 </ui:composition>

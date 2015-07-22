@@ -3,25 +3,27 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-	<p:menubar>
-		<p:submenu label="File" icon="ui-icon-document">
-			<p:submenu label="New" icon="ui-icon-contact">
-				<p:menuitem value="Principal" outcome="/template/principal.xhtml" />
+	<h:form>
+		<p:menubar>
+			<p:submenu label="File" icon="ui-icon-document">
+				<p:submenu label="New" icon="ui-icon-contact">
+					<p:menuitem value="Principal" outcome="/template/principal.xhtml" />
+				</p:submenu>
+				<p:menuitem value="Open" url="#" />
+				<p:separator />
+				<p:menuitem value="Quit" url="#" />
 			</p:submenu>
-			<p:menuitem value="Open" url="#" />
-			<p:separator />
-			<p:menuitem value="Quit" url="#" />
-		</p:submenu>
-		
-		<p:submenu label="Cadastros Básicos" icon="ui-icon-document">
-			<p:menuitem value="Herói" outcome="/paginas/cadastroBasico/heroi.xhtml" />
-			<p:separator />
-			<p:menuitem value="Função" outcome="/paginas/cadastroBasico/funcao.xhtml" />
-			<p:menuitem value="Universo" outcome="/paginas/cadastroBasico/universo.xhtml" />
-		</p:submenu>
-
-		<f:facet name="options">
-			<p:button value="Principal" icon="ui-icon-extlink" outcome="/template/principal.xhtml" />
-		</f:facet>
-	</p:menubar>
+			
+			<p:submenu label="Cadastros Básicos" icon="ui-icon-document">
+				<p:menuitem value="Herói" outcome="/paginas/cadastroBasico/heroi.xhtml" />
+				<p:separator />
+				<p:menuitem value="Função" outcome="/paginas/cadastroBasico/funcao.xhtml" />
+				<p:menuitem value="Universo" outcome="/paginas/cadastroBasico/universo.xhtml" />
+			</p:submenu>
+	
+			<f:facet name="options">
+				<p:button value="Principal" icon="ui-icon-extlink" outcome="/template/principal.xhtml" />
+			</f:facet>
+		</p:menubar>
+	</h:form>
 </ui:composition>
