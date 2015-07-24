@@ -1,49 +1,32 @@
 package br.com.hots.generico.dao;
 
-import java.io.Serializable;
-import java.lang.reflect.ParameterizedType;
-import java.util.List;
-
-import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
 
-@Stateless
-public class GenericJPADAO<T extends Serializable, ID extends Serializable> implements IGenericDAO<T, ID> {
+public class GenericJPADAO<T, ID> implements IGenericDAO<T, ID> {
 
-	@Inject
-	protected EntityManager manager;
 	protected Class<T> classe;
+	protected EntityManager manager;
 
-	@SuppressWarnings("unchecked")
-	public GenericJPADAO() {
-		classe = (Class<T>) (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+	public GenericJPADAO(Class<T> classe, EntityManager manager) {
+		this.classe = classe;
+		this.manager = manager;
 	}
 
-	@Override
 	public T buscar(ID id) {
-		return manager.find(classe, id);
+		T instancia = manager.find(classe, id);
+		return instancia;
 	}
 
-	@Override
 	public void salvar(T entidade) {
-		manager.joinTransaction();
 		manager.persist(entidade);
 	}
 
-	public void atualizar(T entidade) {
-		manager.joinTransaction();
-		manager.merge(entidade);
+	public void remover(T entidade) {
+		manager.remove(manager.merge(entidade));
 	}
 
-	@Override
-	public List<T> getTodos() {
-		CriteriaBuilder builder = manager.getCriteriaBuilder();
-		CriteriaQuery<T> criteriaQuery = builder.createQuery(classe);
-		criteriaQuery.from(classe);
-		return manager.createQuery(criteriaQuery).getResultList();
+	public void atualizar(T entidade) {
+		manager.merge(entidade);
 	}
 
 }

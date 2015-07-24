@@ -9,10 +9,10 @@
 				<h:panelGrid id="panelGrigNovoHeroi" columns="3">
 					<p:outputLabel id="olFuncao" for="somFuncao" value="Função" />
 					<p:selectOneMenu id="somFuncao" value="#{heroiBean.idFuncao}">
-						<f:selectItem itemLabel=" -- Selecione -- " itemValue=""/>
-            			<f:selectItems value="#{funcaoBean.listaFuncaoAtiva}" var="funcao" 
+						<f:selectItem itemLabel=" -- Selecione -- " itemValue="" />
+            			<f:selectItems value="#{heroiBean.funcoes}" var="funcao" 
             				itemLabel="#{funcao.deFuncao}" itemValue="#{funcao.idFuncao}" />
-					</p:selectOneMenu>
+            		</p:selectOneMenu>
 					<p:message for="somFuncao" display="icon" />
 				</h:panelGrid>
 			</h:form>

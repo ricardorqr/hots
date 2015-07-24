@@ -8,4 +8,5 @@
 	<table-filter match-catalog="hots" match-name="partida" />
 	<table-filter match-catalog="hots" match-name="time" />
 	<table-filter match-catalog="hots" match-name="universo" />
+	<table-filter match-catalog="hots" match-name="usuario" />
 </hibernate-reverse-engineering>

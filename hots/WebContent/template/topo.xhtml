@@ -6,12 +6,7 @@
 	<h:form>
 		<p:menubar>
 			<p:submenu label="File" icon="ui-icon-document">
-				<p:submenu label="New" icon="ui-icon-contact">
-					<p:menuitem value="Principal" outcome="/template/principal.xhtml" />
-				</p:submenu>
-				<p:menuitem value="Open" url="#" />
-				<p:separator />
-				<p:menuitem value="Quit" url="#" />
+				<p:menuitem value="Sair" action="#{loginBean.logoff()}" icon="ui-icon-power" />
 			</p:submenu>
 			
 			<p:submenu label="Cadastros Básicos" icon="ui-icon-document">
@@ -19,10 +14,13 @@
 				<p:separator />
 				<p:menuitem value="Função" outcome="/paginas/cadastroBasico/funcao.xhtml" />
 				<p:menuitem value="Universo" outcome="/paginas/cadastroBasico/universo.xhtml" />
+				<p:separator />
+				<p:menuitem value="Usuário Sistema" icon="ui-icon-person" 
+					outcome="/paginas/cadastroBasico/usuario.xhtml" />
 			</p:submenu>
 	
 			<f:facet name="options">
-				<p:button value="Principal" icon="ui-icon-extlink" outcome="/template/principal.xhtml" />
+				<p:button value="Principal" icon="ui-icon-home" outcome="/template/principal.xhtml" />
 			</f:facet>
 		</p:menubar>
 	</h:form>

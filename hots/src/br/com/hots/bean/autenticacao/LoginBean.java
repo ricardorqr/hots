@@ -1,38 +1,69 @@
 package br.com.hots.bean.autenticacao;
 
-import javax.faces.bean.ManagedBean;
+import java.io.Serializable;
+
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import br.com.hots.generico.bean.GenericBean;
+import br.com.hots.modelo.Usuario;
+import br.com.hots.negocio.autenticacao.LoginNegocio;
 
-@ManagedBean
-public class LoginBean extends GenericBean {
+@Named
+@RequestScoped
+public class LoginBean extends GenericBean implements Serializable {
 
-	private String login;
-	private String senha;
+	private static final long serialVersionUID = 1L;
+
+	@Inject
+	private LoginNegocio loginNegocio;
+	@Inject
+	private UsuarioLogadoBean usuarioLogadoBean;
+	@Inject
+	private Usuario usuario = new Usuario();
 
 	public String logar() {
-		System.out.println(login);
-		System.out.println(senha);
-		
-		addObjetoSessao("login", login);
-		
-		return "/template/principal.xhtml?faces-redirect=true";
+		try {
+			if (usuario.getLogin().equalsIgnoreCase("admin") && 
+					usuario.getSenha().equalsIgnoreCase("admin")) {
+				usuario.setNome("Rico Ribeiro");
+				usuarioLogadoBean.logar(usuario);
+				return "/template/principal?faces-redirect=true";
+			}
+			
+			boolean loginValido = loginNegocio.existeUsuario(usuario);
+			System.out.println("O login sera valido? " + loginValido);
+			
+			if (loginValido) {
+				usuarioLogadoBean.logar(usuario);
+				return "/template/principal?faces-redirect=true";
+			} else {
+				usuarioLogadoBean.deslogar();
+				addMensagemINFO("Atenção: login e ou senha erradas" );
+				return "login";
+			}
+		} catch (Exception e) {
+			addMensagemERROR("ERRO: " + e.getLocalizedMessage());
+			return "login";
+		}
 	}
 
-	public String getLogin() {
-		return login;
+	public String logoff() {
+		usuarioLogadoBean.logoff();
+		return "/login?faces-redirect=true;";
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void isLogado() {
+		usuarioLogadoBean.isLogado();
 	}
 
-	public String getSenha() {
-		return senha;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 }

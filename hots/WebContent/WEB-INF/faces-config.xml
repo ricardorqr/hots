@@ -10,4 +10,10 @@
 			<var>mensagem</var>
 		</resource-bundle>
 	</application>
+	
+	<lifecycle>
+		<phase-listener>
+			br.com.hots.listener.AutorizadorListener
+		</phase-listener>
+	</lifecycle>
 </faces-config>

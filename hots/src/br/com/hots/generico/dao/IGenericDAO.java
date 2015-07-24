@@ -1,9 +1,6 @@
 package br.com.hots.generico.dao;
 
-import java.io.Serializable;
-import java.util.List;
-
-public interface IGenericDAO<T extends Serializable, ID extends Serializable> {
+public interface IGenericDAO<T, ID> {
 
 	public T buscar(ID id);
 
@@ -11,6 +8,6 @@ public interface IGenericDAO<T extends Serializable, ID extends Serializable> {
 
 	public void atualizar(T entidade);
 
-	public List<T> getTodos();
-	
+	public void remover(T entidade);
+
 }

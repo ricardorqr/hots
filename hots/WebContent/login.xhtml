@@ -7,7 +7,7 @@
 		<h:outputScript library="javascript" name="jquery-2.1.4.js" target="body" />
 		<h:outputStylesheet library="css" name="css.css" ></h:outputStylesheet>
 		
-		<title>Título 1</title>
+		<title>Heroes Of The Storm</title>
 	</h:head>
 	<h:body>
 		<p:messages autoUpdate="true" closable="true" />
@@ -16,15 +16,15 @@
 			<p:panel header="Autenticar">
 				<h:panelGrid id="gLogin" columns="3" >
 					<p:outputLabel id="olLogin" for="itLogin" value="Login" />
-					<p:inputText id="itLogin" value="#{loginBean.login}" required="true" label="Login" />
-					<p:message for="itLogin" />
+					<p:inputText id="itLogin" value="#{loginBean.usuario.login}" required="true" label="Login" />
+					<p:message for="itLogin" display="icon" />
 					
 					<p:outputLabel id="olSenha" for="pLogin" value="Senha" />
-					<p:password id="pLogin" value="#{loginBean.senha}" required="true" label="Senha" />
-					<p:message for="pLogin" />
+					<p:password id="pLogin" value="#{loginBean.usuario.senha}" required="true" label="Senha" />
+					<p:message for="pLogin" display="icon" />
 				</h:panelGrid>
 				
-				<p:commandButton value="Ok" action="#{loginBean.logar}" update="gLogin" />
+				<p:commandButton value="Ok" action="#{loginBean.logar}" />
 			</p:panel>
 		</h:form>
 	</h:body>
