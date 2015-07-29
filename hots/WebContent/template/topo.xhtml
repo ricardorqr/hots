@@ -6,13 +6,14 @@
 	<h:form>
 		<p:menubar>
 			<p:submenu label="File" icon="ui-icon-document">
-				<p:menuitem value="Sair" action="#{loginBean.logoff()}" icon="ui-icon-power" />
+				<p:menuitem value="Logoff" action="#{loginBean.logoff()}" icon="ui-icon-power" />
 			</p:submenu>
 			
 			<p:submenu label="Cadastros Básicos" icon="ui-icon-document">
-				<p:menuitem value="Herói" outcome="/paginas/cadastroBasico/heroi.xhtml" />
 				<p:separator />
 				<p:menuitem value="Função" outcome="/paginas/cadastroBasico/funcao.xhtml" />
+				<p:menuitem value="Jogador" outcome="/paginas/cadastroBasico/jogador.xhtml" />
+				<p:menuitem value="Herói" outcome="/paginas/cadastroBasico/heroi.xhtml" />
 				<p:menuitem value="Universo" outcome="/paginas/cadastroBasico/universo.xhtml" />
 				<p:separator />
 				<p:menuitem value="Usuário Sistema" icon="ui-icon-person" 

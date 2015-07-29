@@ -7,6 +7,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.com.hots.exception.HotsException;
 import br.com.hots.generico.bean.GenericBean;
 import br.com.hots.modelo.Funcao;
 import br.com.hots.negocio.cadastroBasico.FuncaoNegocio;
@@ -25,6 +26,10 @@ public class FuncaoBean extends GenericBean implements Serializable {
 	public void salvar() {
 		try {
 			if (funcao.getIdFuncao() == null) {
+				if (negocio.objetoExisteNoBanco(funcao)) {
+					throw new HotsException("Função já cadastrada");
+				}
+				
 				negocio.cadastrarFuncao(funcao);
 			} else {
 				negocio.editarFuncao(funcao);
@@ -33,7 +38,7 @@ public class FuncaoBean extends GenericBean implements Serializable {
 			limparTela();
 		}
 		catch (Exception e) {
-			addMensagemERROR("ERRO: " + e.getLocalizedMessage());
+			addMensagemFATAL(e.getLocalizedMessage());
 		}
 	}
 	
@@ -44,7 +49,7 @@ public class FuncaoBean extends GenericBean implements Serializable {
 			limparTela();
 		}
 		catch (Exception e) {
-			addMensagemERROR("ERRO: " + e.getLocalizedMessage());
+			addMensagemFATAL(e.getLocalizedMessage());
 		}
 	}
 	

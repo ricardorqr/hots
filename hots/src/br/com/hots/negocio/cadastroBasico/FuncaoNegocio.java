@@ -26,7 +26,8 @@ public class FuncaoNegocio implements Serializable {
 	}
 	
 	public void removerFuncao(Integer id) {
-		funcaoDAO.remover(id);
+		Funcao funcao = funcaoDAO.buscar(id);
+		funcaoDAO.remover(funcao);
 	}
 	
 	public List<Funcao> getListaTodos() {
@@ -35,6 +36,10 @@ public class FuncaoNegocio implements Serializable {
 	
 	public List<Funcao> getListaTodosAtivos() {
 		return funcaoDAO.getListaTodosAtivos();
+	}
+	
+	public boolean objetoExisteNoBanco(Funcao funcao) {
+		return funcaoDAO.getFuncaoPorNome(funcao.getDeFuncao()) == null ? false : true;
 	}
 
 }

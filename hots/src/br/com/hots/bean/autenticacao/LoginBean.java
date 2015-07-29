@@ -33,18 +33,17 @@ public class LoginBean extends GenericBean implements Serializable {
 			}
 			
 			boolean loginValido = loginNegocio.existeUsuario(usuario);
-			System.out.println("O login sera valido? " + loginValido);
 			
 			if (loginValido) {
 				usuarioLogadoBean.logar(usuario);
 				return "/template/principal?faces-redirect=true";
 			} else {
 				usuarioLogadoBean.deslogar();
-				addMensagemINFO("Atenção: login e ou senha erradas" );
+				addMensagemERROR("Login e ou senha erradas" );
 				return "login";
 			}
 		} catch (Exception e) {
-			addMensagemERROR("ERRO: " + e.getLocalizedMessage());
+			addMensagemERROR("ERRO: " + e.getMessage());
 			return "login";
 		}
 	}

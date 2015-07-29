@@ -9,7 +9,7 @@
 				<h:panelGrid id="panelGridFuncao" columns="3">
 					<p:outputLabel id="olFuncao" for="itFuncao" value="Função" />
 					<p:inputText id="itFuncao" value="#{funcaoBean.funcao.deFuncao}"
-						label="Função" required="true" />
+						label="Função" />
 					<p:message for="itFuncao" display="icon" />
 
 					<p:outputLabel id="olFlagAtivo" for="sorFlagAtivo" value="Ativo" />
@@ -23,7 +23,7 @@
 					<p:message for="sorFlagAtivo" display="icon" />
 				</h:panelGrid>
 
-				<p:commandButton value="Ok" actionListener="#{funcaoBean.salvar}"
+				<p:commandButton value="Ok" action="#{funcaoBean.salvar}"
 					update="formGridFuncoes, formNovaFuncao" icon="ui-icon-check" />
 				<p:button value="Cancelar" outcome="/template/principal.xhtml" icon="ui-icon-close" />
 			</h:form>
@@ -36,19 +36,18 @@
 					<p:column headerText="Nome" sortBy="#{funcao.deFuncao}">
 						<h:outputText value="#{funcao.deFuncao}" />
 					</p:column>
-
 					<p:column headerText="Ativo">
 						<h:outputText value="#{funcao.flagAtivo == 'S' ? 'Sim' : 'Não'}" />
 					</p:column>
-
 					<p:column headerText="Opções">
 						<p:commandLink value="Editar" update="formNovaFuncao">
 							<f:setPropertyActionListener value="#{funcao}" target="#{funcaoBean.funcao}"/>
-						</p:commandLink>
-						|
-						<p:commandLink value="Remover Permanentemente" update="formGridFuncoes, formNovaFuncao"
+						</p:commandLink> |
+						<p:commandLink value="Remover Permanentemente" update="formGridFuncoes"
 							action="#{funcaoBean.removerPermanentemente}">
 							<f:setPropertyActionListener value="#{funcao}" target="#{funcaoBean.funcao}"/>
+							<p:confirm header="Exclusão" message="Tem certeza que deseja excluir o registro?" 
+								icon="ui-icon-alert"/>
 						</p:commandLink>
 					</p:column>
 				</p:dataTable>

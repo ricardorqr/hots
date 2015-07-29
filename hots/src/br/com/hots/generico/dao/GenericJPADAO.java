@@ -1,19 +1,33 @@
 package br.com.hots.generico.dao;
 
+import java.io.Serializable;
+import java.lang.reflect.ParameterizedType;
+import java.util.List;
+
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaQuery;
 
-public class GenericJPADAO<T, ID> implements IGenericDAO<T, ID> {
+public class GenericJPADAO<T extends Serializable, ID extends Serializable> implements IGenericDAO<T, ID> {
 
-	protected Class<T> classe;
+	@PersistenceContext
 	protected EntityManager manager;
+	private Class<T> entityClass;
 
-	public GenericJPADAO(Class<T> classe, EntityManager manager) {
-		this.classe = classe;
-		this.manager = manager;
+	private Class<T> getEntityClass() {
+		if (entityClass == null) {
+			entityClass = (Class) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+		}
+		
+		return entityClass;
+	}
+
+	public void setEntityClass(Class<T> entityClass) {
+		this.entityClass = entityClass;
 	}
 
 	public T buscar(ID id) {
-		T instancia = manager.find(classe, id);
+		T instancia = (T) manager.find(getEntityClass(), id);
 		return instancia;
 	}
 
@@ -27,6 +41,12 @@ public class GenericJPADAO<T, ID> implements IGenericDAO<T, ID> {
 
 	public void atualizar(T entidade) {
 		manager.merge(entidade);
+	}
+	
+	public List<T> getListaTodos() {
+		CriteriaQuery<T> query = manager.getCriteriaBuilder().createQuery(getEntityClass());
+		query.select(query.from(getEntityClass()));
+		return manager.createQuery(query).getResultList();
 	}
 
 }

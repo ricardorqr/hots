@@ -3,12 +3,3 @@
 	position: absolute;
 	bottom: 10px;
 }
-.dialogConfirmacao { /* dialog de confirmação */
-width:100px;
-	height:100px;
-	position:absolute;
-	top:50%;
-	left:50%;
-	margin-top:-50px;
-	margin-left:-50px;
-}

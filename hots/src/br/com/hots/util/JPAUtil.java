@@ -1,4 +1,4 @@
-package br.com.hots.conexao;
+package br.com.hots.util;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
@@ -9,7 +9,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 
 @ApplicationScoped
-public class EntityManagerUtil {
+public class JPAUtil {
 	
 	@PersistenceUnit
 	private EntityManagerFactory factory;

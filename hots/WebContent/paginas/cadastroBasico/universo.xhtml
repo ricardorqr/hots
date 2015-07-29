@@ -36,19 +36,18 @@
 					<p:column headerText="Nome" sortBy="#{universo.deUniverso}">
 						<h:outputText value="#{universo.deUniverso}" />
 					</p:column>
-
 					<p:column headerText="Ativo">
 						<h:outputText value="#{universo.flagAtivo == 'S' ? 'Sim' : 'Não'}" />
 					</p:column>
-
 					<p:column headerText="Opções">
 						<p:commandLink value="Editar" update="formNovoUniverso">
 							<f:setPropertyActionListener value="#{universo}" target="#{universoBean.universo}"/>
-						</p:commandLink>
-						|
+						</p:commandLink> |
 						<p:commandLink value="Remover Permanentemente" update="formGridUniversos"
 							action="#{universoBean.removerPermanentemente}">
 							<f:setPropertyActionListener value="#{universo}" target="#{universoBean.universo}"/>
+							<p:confirm header="Exclusão" message="Tem certeza que deseja excluir o registro?" 
+								icon="ui-icon-alert" />
 						</p:commandLink>
 					</p:column>
 				</p:dataTable>

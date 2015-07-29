@@ -1,0 +1,73 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/template/principal.xhtml">
+	<ui:define name="centro">
+		<p:panel id="panelNovoJogador" header="Novo Jogador">
+			<h:form id="formNovoJogador">
+				<h:panelGrid id="panelGridJogador" columns="3">
+					<p:outputLabel id="olNome" for="itNome" value="Nome" />
+					<p:inputText redisplay="true" id="itNome" value="#{jogadorBean.jogador.nome}"
+						label="Nome" required="true" />
+					<p:message for="itNome" display="icon" />
+					
+					<p:outputLabel id="olApelido" for="itApelido" value="Apelido" />
+					<p:inputText id="itApelido" value="#{jogadorBean.jogador.apelido}"
+						label="Apelido" required="true" />
+					<p:message for="itApelido" display="icon" />
+
+					<p:outputLabel id="olEmail" for="itEmail" value="Email" />
+					<p:inputText id="itEmail" value="#{jogadorBean.jogador.email}"
+						label="Email" required="true" />
+					<p:message for="itEmail" display="icon" />
+					
+					<p:outputLabel id="olFlagAtivo" for="sorFlagAtivo" value="Ativo" />
+					<p:selectOneRadio id="sorFlagAtivo"
+						value="#{jogadorBean.jogador.flagAtivo}"
+						disabled="#{jogadorBean.jogador.flagAtivo == null ? true : false}"
+						required="true">
+						<f:selectItem itemLabel="Sim" itemValue="S" />
+						<f:selectItem itemLabel="Não" itemValue="N" />
+					</p:selectOneRadio>
+					<p:message for="sorFlagAtivo" display="icon" />
+				</h:panelGrid>
+
+				<p:commandButton value="Ok" action="#{jogadorBean.salvar}"
+					update="formGridJogador, formNovoJogador" icon="ui-icon-check" />
+				<p:button value="Cancelar" outcome="/template/principal.xhtml" icon="ui-icon-close" />
+			</h:form>
+		</p:panel>
+
+		<p:panel id="painelGridJogador" header="Jogadores Cadastrados">
+			<h:form id="formGridJogador">
+				<p:dataTable var="jogador" value="#{jogadorBean.jogadores}" 
+					rowKey="#{jogador.idJogador}" emptyMessage="Sem registros cadastrados">
+					<p:column headerText="Nome" sortBy="#{jogador.nome}">
+						<h:outputText value="#{jogador.nome}" />
+					</p:column>
+					<p:column headerText="Apelido" sortBy="#{jogador.apelido}">
+						<h:outputText value="#{jogador.apelido}" />
+					</p:column>
+					<p:column headerText="Email" sortBy="#{jogador.email}">
+						<h:outputText value="#{jogador.email}" />
+					</p:column>
+					<p:column headerText="Ativo">
+						<h:outputText value="#{jogador.flagAtivo == 'S' ? 'Sim' : 'Não'}" />
+					</p:column>
+					<p:column headerText="Opções">
+						<p:commandLink value="Editar" update="formNovoJogador">
+							<f:setPropertyActionListener value="#{jogador}" target="#{jogadorBean.jogador}"/>
+						</p:commandLink> |
+						<p:commandLink value="Remover Permanentemente" update="formGridJogador"
+							action="#{jogadorBean.removerPermanentemente}">
+							<f:setPropertyActionListener value="#{jogador}" target="#{jogadorBean.jogador}"/>
+							<p:confirm header="Exclusão" message="Tem certeza que deseja excluir o registro?" 
+								icon="ui-icon-alert" />
+						</p:commandLink>
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</p:panel>
+	</ui:define>
+</ui:composition>

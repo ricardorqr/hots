@@ -4,13 +4,19 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 	<h:head>
-		<h:outputScript library="javascript" name="jquery-2.1.4.js" target="body" />
-		<h:outputStylesheet library="css" name="css.css" ></h:outputStylesheet>
-		
+		<h:outputStylesheet library="css" name="css.css" />
 		<title><ui:insert name="titulo">Título de Teste</ui:insert></title>
 	</h:head>
 	<h:body>
 		<p:messages id="msg" autoUpdate="true" closable="true" />
+		
+		<!-- ConfirmDialog de confirmacao das dataTables -->
+		<h:form>
+			<p:confirmDialog global="true" widgetVar="confirmacao">
+				<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+				<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+			</p:confirmDialog>
+		</h:form>
 		
 		<ui:insert name="topo">
 			<ui:include src="/template/topo.xhtml"/>

@@ -10,23 +10,31 @@ public abstract class GenericBean {
 	}
 
 	public void addMensagemINFO(String mensagem) {
+		String prefixo = "Informação: ";
 		FacesContext.getCurrentInstance().addMessage(
-				null, new FacesMessage(FacesMessage.SEVERITY_INFO, mensagem, mensagem));
+				null, new FacesMessage(
+						FacesMessage.SEVERITY_INFO, prefixo.concat(mensagem), prefixo.concat(mensagem)));
 	}
 
 	public void addMensagemWARN(String mensagem) {
+		String prefixo = "Atenção: ";
 		FacesContext.getCurrentInstance().addMessage(
-				null, new FacesMessage(FacesMessage.SEVERITY_WARN, mensagem, mensagem));
+				null, new FacesMessage(
+						FacesMessage.SEVERITY_WARN, prefixo.concat(mensagem), prefixo.concat(mensagem)));
 	}
 
 	public void addMensagemERROR(String mensagem) {
+		String prefixo = "ERRO: ";
 		FacesContext.getCurrentInstance().addMessage(
-				null, new FacesMessage(FacesMessage.SEVERITY_ERROR, mensagem, mensagem));
+				null, new FacesMessage(
+						FacesMessage.SEVERITY_ERROR, prefixo.concat(mensagem), prefixo.concat(mensagem)));
 	}
 
 	public void addMensagemFATAL(String mensagem) {
+		String prefixo = "ERRO FATAL: ";
 		FacesContext.getCurrentInstance().addMessage(
-				null, new FacesMessage(FacesMessage.SEVERITY_FATAL, mensagem, mensagem));
+				null, new FacesMessage(
+						FacesMessage.SEVERITY_FATAL, prefixo.concat(mensagem), prefixo.concat(mensagem)));
 	}
 
 }

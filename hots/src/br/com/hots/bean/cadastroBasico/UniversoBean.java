@@ -33,7 +33,7 @@ public class UniversoBean extends GenericBean implements Serializable {
 			limparTela();
 		}
 		catch (Exception e) {
-			addMensagemERROR("ERRO: " + e.getLocalizedMessage());
+			addMensagemFATAL(e.getLocalizedMessage());
 		}
 	}
 	
@@ -44,7 +44,7 @@ public class UniversoBean extends GenericBean implements Serializable {
 			limparTela();
 		}
 		catch (Exception e) {
-			addMensagemERROR("ERRO: " + e.getLocalizedMessage());
+			addMensagemFATAL(e.getLocalizedMessage());
 		}
 	}
 	

@@ -24,8 +24,6 @@ public class AutorizadorListener implements PhaseListener, Serializable {
 
 	@Override
 	public void afterPhase(PhaseEvent event) {
-		System.out.println("PhaseListener de autorização...");
-		
 		if ("/login.xhtml".equals(context.getViewRoot().getViewId())) {
 			return;
 		}

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 
 import br.com.hots.modelo.Usuario;
 
@@ -50,15 +51,13 @@ public class UsuarioDAO implements Serializable {
 	}
 	
 	public Usuario getUsuarioPorLogin(String login) {
-		List<Usuario> usuarios = manager.createQuery(
-				" select u from Usuario u where u.login = :login and u.flagAtivo = 'S' ", Usuario.class)
-				.setParameter("login", login)
-				.getResultList();
-		
-		if (usuarios.isEmpty()) {
+		try {
+			return manager.createQuery(
+					" select u from Usuario u where u.login = :login and u.flagAtivo = 'S' ", Usuario.class)
+					.setParameter("login", login)
+					.getSingleResult();
+		} catch (NoResultException e) {
 			return null;
-		} else {
-			return usuarios.get(0);
 		}
 	}
 	
