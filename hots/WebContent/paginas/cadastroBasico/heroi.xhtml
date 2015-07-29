@@ -10,7 +10,7 @@
 					<p:outputLabel id="olFuncao" for="somFuncao" value="Função" />
 					<p:selectOneMenu id="somFuncao" value="#{heroiBean.idFuncao}">
 						<f:selectItem itemLabel=" -- Selecione -- " itemValue="" />
-            			<f:selectItems value="#{heroiBean.funcoes}" var="funcao" 
+            			<f:selectItems value="#{funcaoBean.listaFuncaoAtiva}" var="funcao" 
             				itemLabel="#{funcao.deFuncao}" itemValue="#{funcao.idFuncao}" />
             		</p:selectOneMenu>
 					<p:message for="somFuncao" display="icon" />

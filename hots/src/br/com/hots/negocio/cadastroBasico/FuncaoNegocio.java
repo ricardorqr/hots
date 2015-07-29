@@ -38,7 +38,7 @@ public class FuncaoNegocio implements Serializable {
 		return funcaoDAO.getListaTodosAtivos();
 	}
 	
-	public boolean objetoExisteNoBanco(Funcao funcao) {
+	public boolean funcaoJaCadastradaNoBanco(Funcao funcao) {
 		return funcaoDAO.getFuncaoPorNome(funcao.getDeFuncao()) == null ? false : true;
 	}
 

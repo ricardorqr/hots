@@ -6,9 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.com.hots.dao.FuncaoDAO;
 import br.com.hots.dao.HeroiDAO;
-import br.com.hots.modelo.Funcao;
 import br.com.hots.modelo.Heroi;
 
 @Named
@@ -18,8 +16,6 @@ public class HeroiNegocio implements Serializable {
 	
 	@Inject
 	private HeroiDAO heroiDAO;
-	@Inject
-	private FuncaoDAO funcaoDAO;
 
 	public void cadastrarHeroi(Heroi heroi) {
 		heroiDAO.salvar(heroi);
@@ -30,7 +26,8 @@ public class HeroiNegocio implements Serializable {
 	}
 	
 	public void removerHeroi(Integer id) {
-		heroiDAO.remover(id);
+		Heroi heroi = heroiDAO.buscar(id);
+		heroiDAO.remover(heroi);
 	}
 	
 	public List<Heroi> getListaTodos() {
@@ -39,10 +36,6 @@ public class HeroiNegocio implements Serializable {
 	
 	public List<Heroi> getListaTodosAtivos() {
 		return heroiDAO.getListaTodosAtivos();
-	}
-	
-	public List<Funcao> getListaFunfoesAtivos() {
-		return funcaoDAO.getListaTodosAtivos();
 	}
 	
 }

@@ -7,6 +7,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.com.hots.exception.HotsException;
 import br.com.hots.generico.bean.GenericBean;
 import br.com.hots.modelo.Universo;
 import br.com.hots.negocio.cadastroBasico.UniversoNegocio;
@@ -25,6 +26,10 @@ public class UniversoBean extends GenericBean implements Serializable {
 	public void salvar() {
 		try {
 			if (universo.getIdUniverso() == null) {
+				if (negocio.universoJaCadastradoNoBanco(universo)) {
+					throw new HotsException("Universo já cadastrada");
+				}
+				
 				negocio.cadastrarUniverso(universo);
 			} else {
 				negocio.editarUniverso(universo);

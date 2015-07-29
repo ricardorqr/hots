@@ -59,15 +59,15 @@
 						<h:outputText value="#{usuario.flagAtivo == 'S' ? 'Sim' : 'Não'}" />
 					</p:column>
 					<p:column headerText="Opções">
-						<p:commandLink value="Editar" update="formNovoUsuario">
+						<p:commandButton title="Editar" update="formNovoUsuario" icon="ui-icon-pencil">
 							<f:setPropertyActionListener value="#{usuario}" target="#{usuarioBean.usuario}"/>
-						</p:commandLink> |
-						<p:commandLink value="Remover Permanentemente" update="formGridUsuario"
-							action="#{usuarioBean.removerPermanentemente}">
+						</p:commandButton> |
+						<p:commandButton title="Remover Permanentemente" update="formGridUsuario"
+							action="#{usuarioBean.removerPermanentemente}" icon="ui-icon-trash">
 							<f:setPropertyActionListener value="#{usuario}" target="#{usuarioBean.usuario}"/>
 							<p:confirm header="Exclusão" message="Tem certeza que deseja excluir o registro?" 
 								icon="ui-icon-alert" />
-						</p:commandLink>
+						</p:commandButton>
 					</p:column>
 				</p:dataTable>
 			</h:form>

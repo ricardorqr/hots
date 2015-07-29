@@ -56,15 +56,15 @@
 						<h:outputText value="#{jogador.flagAtivo == 'S' ? 'Sim' : 'Não'}" />
 					</p:column>
 					<p:column headerText="Opções">
-						<p:commandLink value="Editar" update="formNovoJogador">
+						<p:commandButton title="Editar" update="formNovoJogador" icon="ui-icon-pencil">
 							<f:setPropertyActionListener value="#{jogador}" target="#{jogadorBean.jogador}"/>
-						</p:commandLink> |
-						<p:commandLink value="Remover Permanentemente" update="formGridJogador"
-							action="#{jogadorBean.removerPermanentemente}">
+						</p:commandButton> |
+						<p:commandButton title="Remover Permanentemente" update="formGridJogador"
+							action="#{jogadorBean.removerPermanentemente}" icon="ui-icon-trash">
 							<f:setPropertyActionListener value="#{jogador}" target="#{jogadorBean.jogador}"/>
 							<p:confirm header="Exclusão" message="Tem certeza que deseja excluir o registro?" 
 								icon="ui-icon-alert" />
-						</p:commandLink>
+						</p:commandButton>
 					</p:column>
 				</p:dataTable>
 			</h:form>

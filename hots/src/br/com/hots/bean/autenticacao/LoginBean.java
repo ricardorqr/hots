@@ -43,7 +43,7 @@ public class LoginBean extends GenericBean implements Serializable {
 				return "login";
 			}
 		} catch (Exception e) {
-			addMensagemERROR("ERRO: " + e.getMessage());
+			addMensagemERROR(e.getMessage());
 			return "login";
 		}
 	}

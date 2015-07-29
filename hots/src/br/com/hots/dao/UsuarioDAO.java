@@ -4,39 +4,15 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.ejb.Stateless;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 
+import br.com.hots.generico.dao.GenericJPADAO;
 import br.com.hots.modelo.Usuario;
 
 @Stateless
-public class UsuarioDAO implements Serializable {
+public class UsuarioDAO extends GenericJPADAO<Usuario, Integer> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
-	@Inject
-	private EntityManager manager;
-
-	public Usuario buscar(Integer id) {
-		return manager.find(Usuario.class, id);
-	}
-
-	public void salvar(Usuario entidade) {
-		manager.joinTransaction();
-		manager.persist(entidade);
-	}
-
-	public void atualizar(Usuario entidade) {
-		manager.joinTransaction();
-		manager.merge(entidade);
-	}
-	
-	public void remover(Integer id) {
-		manager.joinTransaction();
-		Usuario usuario = buscar(id);
-		manager.remove(usuario);
-	}
 
 	public List<Usuario> getListaTodos() {
 		return manager.createQuery(

@@ -26,7 +26,8 @@ public class UniversoNegocio implements Serializable {
 	}
 	
 	public void removerUniverso(Integer id) {
-		universoDAO.remover(id);
+		Universo universo = universoDAO.buscar(id);
+		universoDAO.remover(universo);
 	}
 	
 	public List<Universo> getListaTodos() {
@@ -35,6 +36,10 @@ public class UniversoNegocio implements Serializable {
 	
 	public List<Universo> getListaTodosAtivos() {
 		return universoDAO.getListaTodosAtivos();
+	}
+	
+	public boolean universoJaCadastradoNoBanco(Universo universo) {
+		return universoDAO.getUniversoPorNome(universo.getDeUniverso()) == null ? false : true;
 	}
 
 }

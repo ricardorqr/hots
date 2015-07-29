@@ -40,15 +40,15 @@
 						<h:outputText value="#{funcao.flagAtivo == 'S' ? 'Sim' : 'Não'}" />
 					</p:column>
 					<p:column headerText="Opções">
-						<p:commandLink value="Editar" update="formNovaFuncao">
+						<p:commandButton title="Editar" update="formNovaFuncao" icon="ui-icon-pencil">
 							<f:setPropertyActionListener value="#{funcao}" target="#{funcaoBean.funcao}"/>
-						</p:commandLink> |
-						<p:commandLink value="Remover Permanentemente" update="formGridFuncoes"
-							action="#{funcaoBean.removerPermanentemente}">
+						</p:commandButton> |
+						<p:commandButton title="Remover Permanentemente" update="formGridFuncoes"
+							action="#{funcaoBean.removerPermanentemente}" icon="ui-icon-trash">
 							<f:setPropertyActionListener value="#{funcao}" target="#{funcaoBean.funcao}"/>
 							<p:confirm header="Exclusão" message="Tem certeza que deseja excluir o registro?" 
 								icon="ui-icon-alert"/>
-						</p:commandLink>
+						</p:commandButton>
 					</p:column>
 				</p:dataTable>
 			</h:form>

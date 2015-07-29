@@ -26,7 +26,7 @@ public class FuncaoBean extends GenericBean implements Serializable {
 	public void salvar() {
 		try {
 			if (funcao.getIdFuncao() == null) {
-				if (negocio.objetoExisteNoBanco(funcao)) {
+				if (negocio.funcaoJaCadastradaNoBanco(funcao)) {
 					throw new HotsException("Função já cadastrada");
 				}
 				

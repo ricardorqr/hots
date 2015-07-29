@@ -26,7 +26,8 @@ public class JogadorNegocio implements Serializable {
 	}
 	
 	public void removerJogador(Integer id) {
-		jogadorDAO.remover(id);
+		Jogador jogador = jogadorDAO.buscar(id);
+		jogadorDAO.remover(jogador);
 	}
 	
 	public List<Jogador> getListaTodos() {
