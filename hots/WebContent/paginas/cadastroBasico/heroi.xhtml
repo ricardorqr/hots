@@ -4,17 +4,109 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui" template="/template/principal.xhtml">
 	<ui:define name="centro">
-		<p:panel header="Novo Heroi">
+		<p:panel header="Novo Herói">
 			<h:form id="formNovoHeroi">
 				<h:panelGrid id="panelGrigNovoHeroi" columns="3">
 					<p:outputLabel id="olFuncao" for="somFuncao" value="Função" />
-					<p:selectOneMenu id="somFuncao" value="#{heroiBean.idFuncao}">
+					<p:selectOneMenu id="somFuncao" value="#{heroiBean.idFuncao}" required="true">
 						<f:selectItem itemLabel=" -- Selecione -- " itemValue="" />
             			<f:selectItems value="#{funcaoBean.listaFuncaoAtiva}" var="funcao" 
             				itemLabel="#{funcao.deFuncao}" itemValue="#{funcao.idFuncao}" />
             		</p:selectOneMenu>
 					<p:message for="somFuncao" display="icon" />
+					
+					<p:outputLabel id="olUniverso" for="somUniverso" value="Universo" />
+					<p:selectOneMenu id="somUniverso" value="#{heroiBean.idUniverso}" required="true">
+						<f:selectItem itemLabel=" -- Selecione -- " itemValue="" />
+            			<f:selectItems value="#{universoBean.listaUniversoAtiva}" var="universo" 
+            				itemLabel="#{universo.deUniverso}" itemValue="#{universo.idUniverso}" />
+            		</p:selectOneMenu>
+					<p:message for="somUniverso" display="icon" />
+					
+					<p:outputLabel id="olNome" for="itNome" value="Nome" />
+					<p:inputText id="itNome" value="#{heroiBean.heroi.nome}"
+						label="Nome" required="true" />
+					<p:message for="itNome" display="icon" />
+					
+					<p:outputLabel id="olDano" for="itDano" value="Dano" />
+					<p:inputText id="itDano" value="#{heroiBean.heroi.dano}"
+						label="Dano" required="true" />
+					<p:message for="itDano" display="icon" />
+					
+					<p:outputLabel id="olUtilidade" for="itUtilidade" value="Utilidade" />
+					<p:inputText id="itUtilidade" value="#{heroiBean.heroi.utilidade}"
+						label="Utilidade" required="true" />
+					<p:message for="itUtilidade" display="icon" />
+					
+					<p:outputLabel id="olSobrevivencia" for="itSobrevivencia" value="Sobrevivência" />
+					<p:inputText id="itSobrevivencia" value="#{heroiBean.heroi.sobrevivencia}"
+						label="Sobrevivencia" required="true" />
+					<p:message for="itSobrevivencia" display="icon" />
+					
+					<p:outputLabel id="olComplexidade" for="itComplexidade" value="Complexidade" />
+					<p:inputText id="itComplexidade" value="#{heroiBean.heroi.complexidade}"
+						label="Complexidade" required="true" />
+					<p:message for="itComplexidade" display="icon" />
+					
+					<p:outputLabel id="olFlagAtivo" for="sorFlagAtivo" value="Ativo" />
+					<p:selectOneRadio id="sorFlagAtivo"
+						value="#{heroiBean.heroi.flagAtivo}"
+						disabled="#{heroiBean.heroi.idHeroi== null ? true : false}"
+						required="true">
+						<f:selectItem itemLabel="Sim" itemValue="S" />
+						<f:selectItem itemLabel="Não" itemValue="N" />
+					</p:selectOneRadio>
+					<p:message for="sorFlagAtivo" display="icon" />
 				</h:panelGrid>
+				
+				<p:commandButton value="Ok" action="#{heroiBean.salvar}"
+					update="formGridHerois, formNovoHeroi" icon="ui-icon-check" />
+				<p:button value="Cancelar" outcome="/template/principal.xhtml" icon="ui-icon-close" />
+			</h:form>
+		</p:panel>
+		
+		<p:panel id="painelGridHerois" header="Heróis Cadastrados">
+			<h:form id="formGridHerois">
+				<p:dataTable var="heroi" value="#{heroiBean.herois}" 
+					rowKey="#{heroi.idHeroi}" emptyMessage="Sem registros cadastradosdos">
+					<p:column headerText="Nome" sortBy="#{heroi.nome}">
+						<h:outputText value="#{heroi.nome}" />
+					</p:column>
+					<p:column headerText="Função" sortBy="#{heroi.funcao.deFuncao}">
+						<h:outputText value="#{heroi.funcao.deFuncao}" />
+					</p:column>
+					<p:column headerText="Universo" sortBy="#{heroi.universo.deUniverso}">
+						<h:outputText value="#{heroi.universo.deUniverso}" />
+					</p:column>
+					<p:column headerText="Dano" sortBy="#{heroi.dano}">
+						<h:outputText value="#{heroi.dano}" />
+					</p:column>
+					<p:column headerText="Utilidade" sortBy="#{heroi.utilidade}">
+						<h:outputText value="#{heroi.utilidade}" />
+					</p:column>
+					<p:column headerText="Sobrevivência" sortBy="#{heroi.sobrevivencia}">
+						<h:outputText value="#{heroi.sobrevivencia}" />
+					</p:column>
+					<p:column headerText="Complexidade" sortBy="#{heroi.complexidade}">
+						<h:outputText value="#{heroi.complexidade}" />
+					</p:column>
+					<p:column headerText="Ativo">
+						<h:outputText value="#{heroi.flagAtivo == 'S' ? 'Sim' : 'Não'}" />
+					</p:column>
+					<p:column headerText="Opções">
+						<p:commandButton title="Editar" update="formNovoHeroi" icon="ui-icon-pencil">
+							<f:setPropertyActionListener value="#{heroi}" target="#{heroiBean.heroi}"/>
+							<f:setPropertyActionListener value="#{heroi.funcao.idFuncao}" target="#{heroiBean.idFuncao}"/>
+							<f:setPropertyActionListener value="#{heroi.universo.idUniverso}" target="#{heroiBean.idUniverso}"/>
+						</p:commandButton> |
+						<p:commandButton title="Remover Permanentemente" update="formGridHerois"
+							action="#{heroiBean.removerPermanentemente}" icon="ui-icon-trash">
+							<f:setPropertyActionListener value="#{heroi}" target="#{heroiBean.heroi}"/>
+							<p:confirm header="Exclusão" message="Tem certeza que deseja excluir o registro?" 
+								icon="ui-icon-alert"/>
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
 			</h:form>
 		</p:panel>
 	</ui:define>

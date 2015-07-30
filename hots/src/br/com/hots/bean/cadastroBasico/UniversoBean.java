@@ -61,6 +61,14 @@ public class UniversoBean extends GenericBean implements Serializable {
 		return universos;
 	}
 	
+	public List<Universo> getListaUniversoAtiva() {
+		if (universos == null || universos.isEmpty()) {
+			universos = negocio.getListaTodosAtivos();
+		}
+		
+		return universos;
+	}
+	
 	private void limparTela() {
 		universo = new Universo();
 		universos= negocio.getListaTodos();

@@ -14,9 +14,10 @@ public class GenericJPADAO<T extends Serializable, ID extends Serializable> impl
 	protected EntityManager manager;
 	private Class<T> entityClass;
 
+	@SuppressWarnings("unchecked")
 	private Class<T> getEntityClass() {
 		if (entityClass == null) {
-			entityClass = (Class) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+			entityClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 		}
 		
 		return entityClass;
@@ -27,8 +28,7 @@ public class GenericJPADAO<T extends Serializable, ID extends Serializable> impl
 	}
 
 	public T buscar(ID id) {
-		T instancia = (T) manager.find(getEntityClass(), id);
-		return instancia;
+		return (T) manager.find(getEntityClass(), id);
 	}
 
 	public void salvar(T entidade) {

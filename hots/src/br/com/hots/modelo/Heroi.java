@@ -79,13 +79,13 @@ public class Heroi implements java.io.Serializable {
 	}
 	
 	@PrePersist
-	public void atualizaCamposParaInsercao() {
+	public void preparaCamposParaInsercao() {
 		setDataCadastro(Calendar.getInstance());
 		setFlagAtivo("S");
 	}
 
 	@PreUpdate
-	public void atualizaCamposParaAtualizacao() {
+	public void preparaCamposParaAtualizacao() {
 		setDataCadastro(Calendar.getInstance());
 	}
 

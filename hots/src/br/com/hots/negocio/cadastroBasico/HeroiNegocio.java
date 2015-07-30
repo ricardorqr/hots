@@ -6,8 +6,12 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.com.hots.dao.FuncaoDAO;
 import br.com.hots.dao.HeroiDAO;
+import br.com.hots.dao.UniversoDAO;
+import br.com.hots.modelo.Funcao;
 import br.com.hots.modelo.Heroi;
+import br.com.hots.modelo.Universo;
 
 @Named
 public class HeroiNegocio implements Serializable {
@@ -16,13 +20,26 @@ public class HeroiNegocio implements Serializable {
 	
 	@Inject
 	private HeroiDAO heroiDAO;
+	@Inject
+	private FuncaoDAO funcaoDAO;
+	@Inject
+	private UniversoDAO universoDAO;
 
-	public void cadastrarHeroi(Heroi heroi) {
+	public void cadastrarHeroi(Heroi heroi, Integer idFuncao, Integer idUniverso) {
+		buscaFuncaoUniverso(heroi, idFuncao, idUniverso);
 		heroiDAO.salvar(heroi);
 	}
 	
-	public void editarHeroi(Heroi heroi) {
+	public void editarHeroi(Heroi heroi, Integer idFuncao, Integer idUniverso) {
+		buscaFuncaoUniverso(heroi, idFuncao, idUniverso);
 		heroiDAO.atualizar(heroi);
+	}
+
+	private void buscaFuncaoUniverso(Heroi heroi, Integer idFuncao, Integer idUniverso) {
+		Funcao funcao = funcaoDAO.buscar(idFuncao);
+		Universo universo = universoDAO.buscar(idUniverso);
+		heroi.setFuncao(funcao);
+		heroi.setUniverso(universo);
 	}
 	
 	public void removerHeroi(Integer id) {
@@ -36,6 +53,10 @@ public class HeroiNegocio implements Serializable {
 	
 	public List<Heroi> getListaTodosAtivos() {
 		return heroiDAO.getListaTodosAtivos();
+	}
+	
+	public boolean heroiJaCadastradaNoBanco(Heroi heroi) {
+		return heroiDAO.getFuncaoPorNome(heroi.getNome()) == null ? false : true;
 	}
 	
 }
