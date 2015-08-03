@@ -19,13 +19,15 @@
 
 					<p:outputLabel id="olSenha" for="pSenha" value="Senha" />
 					<p:password redisplay="true" id="pSenha" value="#{usuarioBean.usuario.senha}"
-						label="Senha" required="true" match="pConfirmarSenha" 
-						validatorMessage="Senha: Erro de validação: senha e confirmar senha são diferentes"/>
+						label="Senha" required="true" match="pConfirmarSenha" feedback="true" 
+						validatorMessage="Senha: Erro de validação: senha e confirmar senha são diferentes"
+						promptLabel="Digite a senha" weakLabel="Fraco" goodLabel="Médio" strongLabel="Forte" />
 					<p:message for="pSenha" display="icon" />
 					
 					<p:outputLabel id="olConfirmarSenha" for="pConfirmarSenha" value="Confirmar Senha" />
 					<p:password id="pConfirmarSenha" value="#{usuarioBean.usuario.senha}"
-						label="Confirmar Senha" required="true" />
+						label="Confirmar Senha" required="true" feedback="true" promptLabel="Digite a senha" 
+						weakLabel="Fraco" goodLabel="Médio" strongLabel="Forte"/>
 					<p:message for="pConfirmarSenha" display="icon" />
 					
 					<p:outputLabel id="olFlagAtivo" for="sorFlagAtivo" value="Ativo" />
