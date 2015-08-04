@@ -42,6 +42,18 @@
 			<artifactId>bootstrap</artifactId>
 			<version>1.0.10</version>
 		</dependency>
+		
+		<!-- Apache Shiro -->
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-core</artifactId>
+			<version>1.2.4</version>
+		</dependency>
+		<dependency>
+		  <groupId>org.apache.shiro</groupId>
+		  <artifactId>shiro-web</artifactId>
+		  <version>1.2.4</version>
+		</dependency>
 	</dependencies>
 
 	<properties>

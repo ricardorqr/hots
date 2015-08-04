@@ -23,6 +23,11 @@
 			<!-- habilita cache de segundo nivel -->
 			<property name="hibernate.cache.use_second_level_cache" value="true" />
 			
+			<!-- Configuracoes de auditoria -->
+			<property name="org.hibernate.envers.default_catalog" value="hots_aud" />
+			<property name="org.hibernate.envers.audit_table_prefix" value="" />
+			<property name="org.hibernate.envers.audit_table_suffix" value="_aud" />
+			
 			<!-- poderia ser: update, create, create-drop, none -->
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 		</properties>
