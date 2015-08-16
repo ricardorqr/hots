@@ -64,7 +64,7 @@ public class Jogador implements java.io.Serializable {
 		this.flagAtivo = flagAtivo;
 		this.times = times;
 	}
-	
+
 	@PrePersist
 	public void atualizaCamposParaInsercao() {
 		setDataCadastro(Calendar.getInstance());

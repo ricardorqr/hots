@@ -1,13 +1,11 @@
-<persistence version="2.1" 
-	xmlns="http://xmlns.jcp.org/xml/ns/persistence" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 
 	<persistence-unit name="hots" transaction-type="JTA">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 
 		<jta-data-source>java:/hotsDS</jta-data-source>
-		
+
 		<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
 
 		<properties>
@@ -16,21 +14,20 @@
 			<property name="hibernate.format_sql" value="true" />
 			<!-- habilita estatistica -->
 			<!-- <property name="hibernate.generate_statistics" value="true" /> -->
-			
+
 			<!-- habilita cache de consulta JPQL -->
 			<property name="hibernate.cache.use_query_cache" value="true" />
-			
+
 			<!-- habilita cache de segundo nivel -->
 			<property name="hibernate.cache.use_second_level_cache" value="true" />
-			
+
 			<!-- Configuracoes de auditoria -->
 			<property name="org.hibernate.envers.default_catalog" value="hots_aud" />
 			<property name="org.hibernate.envers.audit_table_prefix" value="" />
 			<property name="org.hibernate.envers.audit_table_suffix" value="_aud" />
-			
+
 			<!-- poderia ser: update, create, create-drop, none -->
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 		</properties>
 	</persistence-unit>
-
 </persistence>

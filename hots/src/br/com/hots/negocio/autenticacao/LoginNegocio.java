@@ -2,27 +2,20 @@ package br.com.hots.negocio.autenticacao;
 
 import javax.inject.Inject;
 
-import br.com.hots.dao.UsuarioDAO;
-import br.com.hots.exception.HotsException;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
+
 import br.com.hots.modelo.Usuario;
 
 public class LoginNegocio {
-
+	
 	@Inject
-	private UsuarioDAO usuarioDAO;
+	private Subject currentUser;
 
-	public boolean existeUsuario(Usuario usuario) throws HotsException {
-		Usuario usuarioBanco = usuarioDAO.getUsuarioPorLogin(usuario.getLogin());
-		
-		if (usuarioBanco == null) {
-			throw new HotsException("Login não cadastrado");
-		} else {
-			if (usuarioBanco.getSenha().equals(usuario.getSenha())) {
-				return true;
-			} else {
-				throw new HotsException("Senha digitada errada");
-			}
-		}
+	public void login(Usuario usuario) throws AuthenticationException {
+		UsernamePasswordToken token = new UsernamePasswordToken(usuario.getLogin(), usuario.getSenha(), false);
+		currentUser.login(token);
 	}
 
 }

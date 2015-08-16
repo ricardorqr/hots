@@ -6,7 +6,11 @@
 	<table-filter match-catalog="hots" match-name="heroi" />
 	<table-filter match-catalog="hots" match-name="jogador" />
 	<table-filter match-catalog="hots" match-name="partida" />
+	<table-filter match-catalog="hots" match-name="perfil" />
+	<table-filter match-catalog="hots" match-name="perfiltransacao" />
 	<table-filter match-catalog="hots" match-name="time" />
+	<table-filter match-catalog="hots" match-name="transacao" />
 	<table-filter match-catalog="hots" match-name="universo" />
 	<table-filter match-catalog="hots" match-name="usuario" />
+	<table-filter match-catalog="hots" match-name="usuarioperfil" />
 </hibernate-reverse-engineering>

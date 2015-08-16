@@ -11,9 +11,11 @@
 		</resource-bundle>
 	</application>
 	
+	<!-- Phaselisteners de verificação de usuario logado (forma manual)
 	<lifecycle>
 		<phase-listener>
 			br.com.hots.listener.AutorizadorListener
 		</phase-listener>
 	</lifecycle>
+	 -->
 </faces-config>

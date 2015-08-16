@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory name="MySessionFactory">
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.password">84265rqr</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hots</property>
+		<property name="hibernate.connection.username">ricardorqr</property>
+
+		<mapping class="br.com.hots.modelo.Auditoriarevisao" />
+		<mapping class="br.com.hots.modelo.Funcao" />
+		<mapping class="br.com.hots.modelo.Heroi" />
+		<mapping class="br.com.hots.modelo.Jogador" />
+		<mapping class="br.com.hots.modelo.Partida" />
+		<mapping class="br.com.hots.modelo.Perfil" />
+		<mapping class="br.com.hots.modelo.Perfiltransacao" />
+		<mapping class="br.com.hots.modelo.Time" />
+		<mapping class="br.com.hots.modelo.Transacao" />
+		<mapping class="br.com.hots.modelo.Universo" />
+		<mapping class="br.com.hots.modelo.Usuario" />
+		<mapping class="br.com.hots.modelo.Usuarioperfil" />
+	</session-factory>
+</hibernate-configuration>

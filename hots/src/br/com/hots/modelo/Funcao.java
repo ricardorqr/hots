@@ -58,7 +58,7 @@ public class Funcao implements java.io.Serializable {
 		this.flagAtivo = flagAtivo;
 		this.herois = herois;
 	}
-	
+
 	@PrePersist
 	public void atualizaCamposParaInsercao() {
 		setDataCadastro(Calendar.getInstance());
@@ -81,7 +81,7 @@ public class Funcao implements java.io.Serializable {
 		this.idFuncao = idFuncao;
 	}
 
-	@NotEmpty(message="O campo função é obrigatório")
+	@NotEmpty(message = "O campo função é obrigatório")
 	@Column(name = "deFuncao", unique = true, nullable = false, length = 100)
 	public String getDeFuncao() {
 		return this.deFuncao;
@@ -90,7 +90,7 @@ public class Funcao implements java.io.Serializable {
 	public void setDeFuncao(String deFuncao) {
 		this.deFuncao = deFuncao;
 	}
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dataCadastro", nullable = false, length = 19)
 	public Calendar getDataCadastro() {

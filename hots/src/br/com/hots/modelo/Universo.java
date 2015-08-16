@@ -58,7 +58,7 @@ public class Universo implements java.io.Serializable {
 		this.flagAtivo = flagAtivo;
 		this.herois = herois;
 	}
-	
+
 	@PrePersist
 	public void atualizaCamposParaInsercao() {
 		setDataCadastro(Calendar.getInstance());
@@ -81,7 +81,7 @@ public class Universo implements java.io.Serializable {
 		this.idUniverso = idUniverso;
 	}
 
-	@NotEmpty(message="O campo universo é obrigatório")
+	@NotEmpty(message = "O campo universo é obrigatório")
 	@Column(name = "deUniverso", unique = true, nullable = false, length = 100)
 	public String getDeUniverso() {
 		return this.deUniverso;

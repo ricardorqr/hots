@@ -81,7 +81,7 @@ public class Heroi implements java.io.Serializable {
 		this.flagAtivo = flagAtivo;
 		this.times = times;
 	}
-	
+
 	@PrePersist
 	public void preparaCamposParaInsercao() {
 		setDataCadastro(Calendar.getInstance());

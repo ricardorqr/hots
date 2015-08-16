@@ -26,7 +26,7 @@ public class AuditoriaRevisao implements Serializable {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@RevisionNumber
-	private int idRevisao;
+	private Integer idRevisao;
 	
 	@RevisionTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
@@ -34,11 +34,11 @@ public class AuditoriaRevisao implements Serializable {
 	
 	private String login;
 
-	public int getIdRevisao() {
+	public Integer getIdRevisao() {
 		return idRevisao;
 	}
 
-	public void setIdRevisao(int idRevisao) {
+	public void setIdRevisao(Integer idRevisao) {
 		this.idRevisao = idRevisao;
 	}
 

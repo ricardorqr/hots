@@ -6,6 +6,9 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.subject.Subject;
+
 import br.com.hots.generico.bean.GenericBean;
 import br.com.hots.modelo.Usuario;
 import br.com.hots.negocio.autenticacao.LoginNegocio;
@@ -19,42 +22,30 @@ public class LoginBean extends GenericBean implements Serializable {
 	@Inject
 	private LoginNegocio loginNegocio;
 	@Inject
-	private UsuarioLogadoBean usuarioLogadoBean;
-	@Inject
 	private Usuario usuario = new Usuario();
+	@Inject
+	private Subject currentUser;
 
 	public String logar() {
 		try {
-			if (usuario.getLogin().equalsIgnoreCase("admin") && 
-					usuario.getSenha().equalsIgnoreCase("admin")) {
-				usuario.setNome("Rico Ribeiro");
-				usuarioLogadoBean.logar(usuario);
-				return "/template/principal?faces-redirect=true";
-			}
-			
-			boolean loginValido = loginNegocio.existeUsuario(usuario);
-			
-			if (loginValido) {
-				usuarioLogadoBean.logar(usuario);
-				return "/template/principal?faces-redirect=true";
-			} else {
-				usuarioLogadoBean.deslogar();
-				addMensagemERROR("Login e ou senha erradas" );
-				return "login";
-			}
+			loginNegocio.login(usuario);
+			return "/template/principal?faces-redirect=true";
+		} catch (AuthenticationException ae) {
+			addMensagemERROR("Login ou senha incorretos: " + ae.getMessage());
+			return "login";
 		} catch (Exception e) {
-			addMensagemERROR(e.getMessage());
+			addMensagemFATAL(e.getMessage());
 			return "login";
 		}
 	}
 
 	public String logoff() {
-		usuarioLogadoBean.logoff();
+		currentUser.logout();
 		return "/login?faces-redirect=true;";
 	}
 
 	public void isLogado() {
-		usuarioLogadoBean.isLogado();
+		currentUser.isAuthenticated();
 	}
 
 	public Usuario getUsuario() {
