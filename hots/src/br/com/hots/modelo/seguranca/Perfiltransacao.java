@@ -1,8 +1,8 @@
 package br.com.hots.modelo.seguranca;
 
-// Generated 15/08/2015 19:23:14 by Hibernate Tools 4.3.1
+// Generated 22/08/2015 22:43:50 by Hibernate Tools 4.3.1
 
-import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -30,14 +30,14 @@ public class Perfiltransacao implements java.io.Serializable {
 	private PerfiltransacaoId id;
 	private Perfil perfil;
 	private Transacao transacao;
-	private Calendar dataCadastro;
+	private Date dataCadastro;
 	private String flagAtivo;
 
 	public Perfiltransacao() {
 	}
 
 	public Perfiltransacao(PerfiltransacaoId id, Perfil perfil,
-			Transacao transacao, Calendar dataCadastro, String flagAtivo) {
+			Transacao transacao, Date dataCadastro, String flagAtivo) {
 		this.id = id;
 		this.perfil = perfil;
 		this.transacao = transacao;
@@ -47,7 +47,7 @@ public class Perfiltransacao implements java.io.Serializable {
 
 	@EmbeddedId
 	@AttributeOverrides({
-			@AttributeOverride(name = "idPefil", column = @Column(name = "idPefil", nullable = false)),
+			@AttributeOverride(name = "idPerfil", column = @Column(name = "idPerfil", nullable = false)),
 			@AttributeOverride(name = "idTransacao", column = @Column(name = "idTransacao", nullable = false)) })
 	public PerfiltransacaoId getId() {
 		return this.id;
@@ -58,7 +58,7 @@ public class Perfiltransacao implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idPefil", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "idPerfil", nullable = false, insertable = false, updatable = false)
 	public Perfil getPerfil() {
 		return this.perfil;
 	}
@@ -79,11 +79,11 @@ public class Perfiltransacao implements java.io.Serializable {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dataCadastro", nullable = false, length = 19)
-	public Calendar getDataCadastro() {
+	public Date getDataCadastro() {
 		return this.dataCadastro;
 	}
 
-	public void setDataCadastro(Calendar dataCadastro) {
+	public void setDataCadastro(Date dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
 

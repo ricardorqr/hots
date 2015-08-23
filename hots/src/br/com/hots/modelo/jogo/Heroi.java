@@ -1,10 +1,11 @@
 package br.com.hots.modelo.jogo;
 
-// Generated 18/07/2015 21:46:33 by Hibernate Tools 4.3.1
+// Generated 22/08/2015 22:43:50 by Hibernate Tools 4.3.1
 
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -46,7 +47,7 @@ public class Heroi implements java.io.Serializable {
 	private Integer utilidade;
 	private Integer sobrevivencia;
 	private Integer complexidade;
-	private Calendar dataCadastro;
+	private Date dataCadastro;
 	private String flagAtivo;
 	private Set<Time> times = new HashSet<Time>(0);
 
@@ -55,7 +56,7 @@ public class Heroi implements java.io.Serializable {
 
 	public Heroi(Funcao funcao, Universo universo, String nome, Integer dano,
 			Integer utilidade, Integer sobrevivencia, Integer complexidade,
-			Calendar dataCadastro, String flagAtivo) {
+			Date dataCadastro, String flagAtivo) {
 		this.funcao = funcao;
 		this.universo = universo;
 		this.nome = nome;
@@ -69,7 +70,7 @@ public class Heroi implements java.io.Serializable {
 
 	public Heroi(Funcao funcao, Universo universo, String nome, Integer dano,
 			Integer utilidade, Integer sobrevivencia, Integer complexidade,
-			Calendar dataCadastro, String flagAtivo, Set<Time> times) {
+			Date dataCadastro, String flagAtivo, Set<Time> times) {
 		this.funcao = funcao;
 		this.universo = universo;
 		this.nome = nome;
@@ -84,13 +85,13 @@ public class Heroi implements java.io.Serializable {
 
 	@PrePersist
 	public void preparaCamposParaInsercao() {
-		setDataCadastro(Calendar.getInstance());
+		setDataCadastro(Calendar.getInstance().getTime());
 		setFlagAtivo("S");
 	}
 
 	@PreUpdate
 	public void preparaCamposParaAtualizacao() {
-		setDataCadastro(Calendar.getInstance());
+		setDataCadastro(Calendar.getInstance().getTime());
 	}
 
 	@Id
@@ -171,11 +172,11 @@ public class Heroi implements java.io.Serializable {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dataCadastro", nullable = false, length = 19)
-	public Calendar getDataCadastro() {
+	public Date getDataCadastro() {
 		return this.dataCadastro;
 	}
 
-	public void setDataCadastro(Calendar dataCadastro) {
+	public void setDataCadastro(Date dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
 
@@ -188,8 +189,8 @@ public class Heroi implements java.io.Serializable {
 		this.flagAtivo = flagAtivo;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "heroi")
 	@NotAudited
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "heroi")
 	public Set<Time> getTimes() {
 		return this.times;
 	}

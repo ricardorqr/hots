@@ -1,6 +1,6 @@
 package br.com.hots.modelo.jogo;
 
-// Generated 18/07/2015 21:46:33 by Hibernate Tools 4.3.1
+// Generated 22/08/2015 22:43:50 by Hibernate Tools 4.3.1
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -31,9 +31,9 @@ public class Time implements java.io.Serializable {
 	private Integer idTime;
 	private Heroi heroi;
 	private Jogador jogador;
-	private Set<Partida> partidasForIdTimeVencedor = new HashSet<Partida>(0);
 	private Set<Partida> partidasForIdTime1 = new HashSet<Partida>(0);
 	private Set<Partida> partidasForIdTime2 = new HashSet<Partida>(0);
+	private Set<Partida> partidasForIdTimeVencedor = new HashSet<Partida>(0);
 
 	public Time() {
 	}
@@ -43,14 +43,14 @@ public class Time implements java.io.Serializable {
 		this.jogador = jogador;
 	}
 
-	public Time(Heroi heroi, Jogador jogador,
-			Set<Partida> partidasForIdTimeVencedor,
-			Set<Partida> partidasForIdTime1, Set<Partida> partidasForIdTime2) {
+	public Time(Heroi heroi, Jogador jogador, Set<Partida> partidasForIdTime1,
+			Set<Partida> partidasForIdTime2,
+			Set<Partida> partidasForIdTimeVencedor) {
 		this.heroi = heroi;
 		this.jogador = jogador;
-		this.partidasForIdTimeVencedor = partidasForIdTimeVencedor;
 		this.partidasForIdTime1 = partidasForIdTime1;
 		this.partidasForIdTime2 = partidasForIdTime2;
+		this.partidasForIdTimeVencedor = partidasForIdTimeVencedor;
 	}
 
 	@Id
@@ -84,16 +84,6 @@ public class Time implements java.io.Serializable {
 		this.jogador = jogador;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "timeByIdTimeVencedor")
-	public Set<Partida> getPartidasForIdTimeVencedor() {
-		return this.partidasForIdTimeVencedor;
-	}
-
-	public void setPartidasForIdTimeVencedor(
-			Set<Partida> partidasForIdTimeVencedor) {
-		this.partidasForIdTimeVencedor = partidasForIdTimeVencedor;
-	}
-
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "timeByIdTime1")
 	public Set<Partida> getPartidasForIdTime1() {
 		return this.partidasForIdTime1;
@@ -110,6 +100,16 @@ public class Time implements java.io.Serializable {
 
 	public void setPartidasForIdTime2(Set<Partida> partidasForIdTime2) {
 		this.partidasForIdTime2 = partidasForIdTime2;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "timeByIdTimeVencedor")
+	public Set<Partida> getPartidasForIdTimeVencedor() {
+		return this.partidasForIdTimeVencedor;
+	}
+
+	public void setPartidasForIdTimeVencedor(
+			Set<Partida> partidasForIdTimeVencedor) {
+		this.partidasForIdTimeVencedor = partidasForIdTimeVencedor;
 	}
 
 }

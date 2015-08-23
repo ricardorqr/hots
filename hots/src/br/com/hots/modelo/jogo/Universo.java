@@ -1,10 +1,11 @@
 package br.com.hots.modelo.jogo;
 
-// Generated 18/07/2015 21:46:33 by Hibernate Tools 4.3.1
+// Generated 22/08/2015 22:43:50 by Hibernate Tools 4.3.1
 
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -38,20 +39,20 @@ public class Universo implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer idUniverso;
 	private String deUniverso;
-	private Calendar dataCadastro;
+	private Date dataCadastro;
 	private String flagAtivo;
 	private Set<Heroi> herois = new HashSet<Heroi>(0);
 
 	public Universo() {
 	}
 
-	public Universo(String deUniverso, Calendar dataCadastro, String flagAtivo) {
+	public Universo(String deUniverso, Date dataCadastro, String flagAtivo) {
 		this.deUniverso = deUniverso;
 		this.dataCadastro = dataCadastro;
 		this.flagAtivo = flagAtivo;
 	}
 
-	public Universo(String deUniverso, Calendar dataCadastro, String flagAtivo,
+	public Universo(String deUniverso, Date dataCadastro, String flagAtivo,
 			Set<Heroi> herois) {
 		this.deUniverso = deUniverso;
 		this.dataCadastro = dataCadastro;
@@ -61,13 +62,13 @@ public class Universo implements java.io.Serializable {
 
 	@PrePersist
 	public void atualizaCamposParaInsercao() {
-		setDataCadastro(Calendar.getInstance());
+		setDataCadastro(Calendar.getInstance().getTime());
 		setFlagAtivo("S");
 	}
 
 	@PreUpdate
 	public void atualizaCamposParaAtualizacao() {
-		setDataCadastro(Calendar.getInstance());
+		setDataCadastro(Calendar.getInstance().getTime());
 	}
 
 	@Id
@@ -93,11 +94,11 @@ public class Universo implements java.io.Serializable {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dataCadastro", nullable = false, length = 19)
-	public Calendar getDataCadastro() {
+	public Date getDataCadastro() {
 		return this.dataCadastro;
 	}
 
-	public void setDataCadastro(Calendar dataCadastro) {
+	public void setDataCadastro(Date dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
 

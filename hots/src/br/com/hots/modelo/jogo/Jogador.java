@@ -1,10 +1,11 @@
 package br.com.hots.modelo.jogo;
 
-// Generated 18/07/2015 21:46:33 by Hibernate Tools 4.3.1
+// Generated 22/08/2015 22:43:50 by Hibernate Tools 4.3.1
 
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -39,7 +40,7 @@ public class Jogador implements java.io.Serializable {
 	private String apelido;
 	private String nome;
 	private String email;
-	private Calendar dataCadastro;
+	private Date dataCadastro;
 	private String flagAtivo;
 	private Set<Time> times = new HashSet<Time>(0);
 
@@ -47,7 +48,7 @@ public class Jogador implements java.io.Serializable {
 	}
 
 	public Jogador(String apelido, String nome, String email,
-			Calendar dataCadastro, String flagAtivo) {
+			Date dataCadastro, String flagAtivo) {
 		this.apelido = apelido;
 		this.nome = nome;
 		this.email = email;
@@ -56,7 +57,7 @@ public class Jogador implements java.io.Serializable {
 	}
 
 	public Jogador(String apelido, String nome, String email,
-			Calendar dataCadastro, String flagAtivo, Set<Time> times) {
+			Date dataCadastro, String flagAtivo, Set<Time> times) {
 		this.apelido = apelido;
 		this.nome = nome;
 		this.email = email;
@@ -67,13 +68,13 @@ public class Jogador implements java.io.Serializable {
 
 	@PrePersist
 	public void atualizaCamposParaInsercao() {
-		setDataCadastro(Calendar.getInstance());
+		setDataCadastro(Calendar.getInstance().getTime());
 		setFlagAtivo("S");
 	}
 
 	@PreUpdate
 	public void atualizaCamposParaAtualizacao() {
-		setDataCadastro(Calendar.getInstance());
+		setDataCadastro(Calendar.getInstance().getTime());
 	}
 
 	@Id
@@ -116,11 +117,11 @@ public class Jogador implements java.io.Serializable {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dataCadastro", nullable = false, length = 19)
-	public Calendar getDataCadastro() {
+	public Date getDataCadastro() {
 		return this.dataCadastro;
 	}
 
-	public void setDataCadastro(Calendar dataCadastro) {
+	public void setDataCadastro(Date dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
 

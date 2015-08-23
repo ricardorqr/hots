@@ -1,10 +1,10 @@
 package br.com.hots.modelo.jogo;
 
-// Generated 18/07/2015 21:46:33 by Hibernate Tools 4.3.1
+// Generated 22/08/2015 22:43:50 by Hibernate Tools 4.3.1
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,17 +33,17 @@ public class Partida implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Integer idPartida;
-	private Time timeByIdTimeVencedor;
 	private Time timeByIdTime1;
 	private Time timeByIdTime2;
+	private Time timeByIdTimeVencedor;
 	private Integer mortes;
-	private Calendar dataCadastro;
+	private Date dataCadastro;
 	private String flagAtivo;
 
 	public Partida() {
 	}
 
-	public Partida(Time timeByIdTime1, Time timeByIdTime2, Calendar dataCadastro,
+	public Partida(Time timeByIdTime1, Time timeByIdTime2, Date dataCadastro,
 			String flagAtivo) {
 		this.timeByIdTime1 = timeByIdTime1;
 		this.timeByIdTime2 = timeByIdTime2;
@@ -51,12 +51,12 @@ public class Partida implements java.io.Serializable {
 		this.flagAtivo = flagAtivo;
 	}
 
-	public Partida(Time timeByIdTimeVencedor, Time timeByIdTime1,
-			Time timeByIdTime2, Integer mortes, Calendar dataCadastro,
+	public Partida(Time timeByIdTime1, Time timeByIdTime2,
+			Time timeByIdTimeVencedor, Integer mortes, Date dataCadastro,
 			String flagAtivo) {
-		this.timeByIdTimeVencedor = timeByIdTimeVencedor;
 		this.timeByIdTime1 = timeByIdTime1;
 		this.timeByIdTime2 = timeByIdTime2;
+		this.timeByIdTimeVencedor = timeByIdTimeVencedor;
 		this.mortes = mortes;
 		this.dataCadastro = dataCadastro;
 		this.flagAtivo = flagAtivo;
@@ -73,20 +73,9 @@ public class Partida implements java.io.Serializable {
 		this.idPartida = idPartida;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idTimeVencedor")
 	@NotAudited
-	public Time getTimeByIdTimeVencedor() {
-		return this.timeByIdTimeVencedor;
-	}
-
-	public void setTimeByIdTimeVencedor(Time timeByIdTimeVencedor) {
-		this.timeByIdTimeVencedor = timeByIdTimeVencedor;
-	}
-
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idTime1", nullable = false)
-	@NotAudited
 	public Time getTimeByIdTime1() {
 		return this.timeByIdTime1;
 	}
@@ -95,15 +84,26 @@ public class Partida implements java.io.Serializable {
 		this.timeByIdTime1 = timeByIdTime1;
 	}
 
+	@NotAudited
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idTime2", nullable = false)
-	@NotAudited
 	public Time getTimeByIdTime2() {
 		return this.timeByIdTime2;
 	}
 
 	public void setTimeByIdTime2(Time timeByIdTime2) {
 		this.timeByIdTime2 = timeByIdTime2;
+	}
+
+	@NotAudited
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idTimeVencedor")
+	public Time getTimeByIdTimeVencedor() {
+		return this.timeByIdTimeVencedor;
+	}
+
+	public void setTimeByIdTimeVencedor(Time timeByIdTimeVencedor) {
+		this.timeByIdTimeVencedor = timeByIdTimeVencedor;
 	}
 
 	@Column(name = "mortes")
@@ -117,11 +117,11 @@ public class Partida implements java.io.Serializable {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dataCadastro", nullable = false, length = 19)
-	public Calendar getDataCadastro() {
+	public Date getDataCadastro() {
 		return this.dataCadastro;
 	}
 
-	public void setDataCadastro(Calendar dataCadastro) {
+	public void setDataCadastro(Date dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
 

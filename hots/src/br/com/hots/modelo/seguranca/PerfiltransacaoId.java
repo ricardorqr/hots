@@ -1,6 +1,6 @@
 package br.com.hots.modelo.seguranca;
 
-// Generated 15/08/2015 19:23:14 by Hibernate Tools 4.3.1
+// Generated 22/08/2015 22:43:50 by Hibernate Tools 4.3.1
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -15,24 +15,24 @@ public class PerfiltransacaoId implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Integer idPefil;
+	private Integer idPerfil;
 	private Integer idTransacao;
 
 	public PerfiltransacaoId() {
 	}
 
-	public PerfiltransacaoId(Integer idPefil, Integer idTransacao) {
-		this.idPefil = idPefil;
+	public PerfiltransacaoId(Integer idPerfil, Integer idTransacao) {
+		this.idPerfil = idPerfil;
 		this.idTransacao = idTransacao;
 	}
 
-	@Column(name = "idPefil", nullable = false)
-	public Integer getIdPefil() {
-		return this.idPefil;
+	@Column(name = "idPerfil", nullable = false)
+	public Integer getIdPerfil() {
+		return this.idPerfil;
 	}
 
-	public void setIdPefil(Integer idPefil) {
-		this.idPefil = idPefil;
+	public void setIdPerfil(Integer idPerfil) {
+		this.idPerfil = idPerfil;
 	}
 
 	@Column(name = "idTransacao", nullable = false)
@@ -53,14 +53,14 @@ public class PerfiltransacaoId implements java.io.Serializable {
 			return false;
 		PerfiltransacaoId castOther = (PerfiltransacaoId) other;
 
-		return (this.getIdPefil() == castOther.getIdPefil())
+		return (this.getIdPerfil() == castOther.getIdPerfil())
 				&& (this.getIdTransacao() == castOther.getIdTransacao());
 	}
 
 	public int hashCode() {
 		int result = 17;
 
-		result = 37 * result + this.getIdPefil();
+		result = 37 * result + this.getIdPerfil();
 		result = 37 * result + this.getIdTransacao();
 		return result;
 	}

@@ -1,20 +1,19 @@
 package br.com.hots.modelo.seguranca;
 
-// Generated 15/08/2015 19:23:14 by Hibernate Tools 4.3.1
+// Generated 22/08/2015 22:43:50 by Hibernate Tools 4.3.1
 
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -36,24 +35,51 @@ public class Usuario implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Integer idUsuario;
+	private Perfil perfil;
 	private String login;
 	private String senha;
 	private String nome;
 	private String email;
 	private Date dataNascimento;
-	private Calendar dataCadastro;
+	private Date dataCadastro;
 	private String flagAtivo;
-	private Set<Usuarioperfil> usuarioperfils = new HashSet<Usuarioperfil>(0);
 
+	public Usuario() {
+	}
+
+	public Usuario(Perfil perfil, String login, String senha, String nome,
+			String email, Date dataCadastro, String flagAtivo) {
+		this.perfil = perfil;
+		this.login = login;
+		this.senha = senha;
+		this.nome = nome;
+		this.email = email;
+		this.dataCadastro = dataCadastro;
+		this.flagAtivo = flagAtivo;
+	}
+
+	public Usuario(Perfil perfil, String login, String senha, String nome,
+			String email, Date dataNascimento, Date dataCadastro,
+			String flagAtivo) {
+		this.perfil = perfil;
+		this.login = login;
+		this.senha = senha;
+		this.nome = nome;
+		this.email = email;
+		this.dataNascimento = dataNascimento;
+		this.dataCadastro = dataCadastro;
+		this.flagAtivo = flagAtivo;
+	}
+	
 	@PrePersist
 	public void atualizaCamposParaInsercao() {
-		setDataCadastro(Calendar.getInstance());
+		setDataCadastro(Calendar.getInstance().getTime());
 		setFlagAtivo("S");
 	}
 
 	@PreUpdate
 	public void atualizaCamposParaAtualizacao() {
-		setDataCadastro(Calendar.getInstance());
+		setDataCadastro(Calendar.getInstance().getTime());
 	}
 
 	@Id
@@ -65,6 +91,16 @@ public class Usuario implements java.io.Serializable {
 
 	public void setIdUsuario(Integer idUsuario) {
 		this.idUsuario = idUsuario;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idPerfil", nullable = false)
+	public Perfil getPerfil() {
+		return this.perfil;
+	}
+
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
 	}
 
 	@NotEmpty(message = "O campo login é obrigatório")
@@ -118,11 +154,11 @@ public class Usuario implements java.io.Serializable {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dataCadastro", nullable = false, length = 19)
-	public Calendar getDataCadastro() {
+	public Date getDataCadastro() {
 		return this.dataCadastro;
 	}
 
-	public void setDataCadastro(Calendar dataCadastro) {
+	public void setDataCadastro(Date dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
 
@@ -133,15 +169,6 @@ public class Usuario implements java.io.Serializable {
 
 	public void setFlagAtivo(String flagAtivo) {
 		this.flagAtivo = flagAtivo;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
-	public Set<Usuarioperfil> getUsuarioperfils() {
-		return this.usuarioperfils;
-	}
-
-	public void setUsuarioperfils(Set<Usuarioperfil> usuarioperfils) {
-		this.usuarioperfils = usuarioperfils;
 	}
 
 }

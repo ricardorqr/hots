@@ -2,15 +2,15 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
 
 <hibernate-reverse-engineering>
-	<table-filter match-catalog="hots" match-name="funcao" />
-	<table-filter match-catalog="hots" match-name="heroi" />
-	<table-filter match-catalog="hots" match-name="jogador" />
-	<table-filter match-catalog="hots" match-name="partida" />
-	<table-filter match-catalog="hots" match-name="perfil" />
-	<table-filter match-catalog="hots" match-name="perfiltransacao" />
-	<table-filter match-catalog="hots" match-name="time" />
-	<table-filter match-catalog="hots" match-name="transacao" />
-	<table-filter match-catalog="hots" match-name="universo" />
-	<table-filter match-catalog="hots" match-name="usuario" />
-	<table-filter match-catalog="hots" match-name="usuarioperfil" />
+  <table-filter match-catalog="hots" match-name="auditoriarevisao"/>
+  <table-filter match-catalog="hots" match-name="funcao"/>
+  <table-filter match-catalog="hots" match-name="heroi"/>
+  <table-filter match-catalog="hots" match-name="jogador"/>
+  <table-filter match-catalog="hots" match-name="partida"/>
+  <table-filter match-catalog="hots" match-name="perfil"/>
+  <table-filter match-catalog="hots" match-name="perfiltransacao"/>
+  <table-filter match-catalog="hots" match-name="time"/>
+  <table-filter match-catalog="hots" match-name="transacao"/>
+  <table-filter match-catalog="hots" match-name="universo"/>
+  <table-filter match-catalog="hots" match-name="usuario"/>
 </hibernate-reverse-engineering>

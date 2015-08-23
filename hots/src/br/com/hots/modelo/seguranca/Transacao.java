@@ -1,8 +1,8 @@
 package br.com.hots.modelo.seguranca;
 
-// Generated 15/08/2015 19:23:14 by Hibernate Tools 4.3.1
+// Generated 22/08/2015 22:43:50 by Hibernate Tools 4.3.1
 
-import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -30,23 +30,23 @@ public class Transacao implements java.io.Serializable {
 	private Integer idTransacao;
 	private String deTrancacao;
 	private String observacao;
-	private Calendar dataCadastro;
+	private Date dataCadastro;
 	private String flagAtivo;
 	private Set<Perfiltransacao> perfiltransacaos = new HashSet<Perfiltransacao>(0);
 
 	public Transacao() {
 	}
 
-	public Transacao(Integer idTransacao, String deTrancacao,
-			Calendar dataCadastro, String flagAtivo) {
+	public Transacao(Integer idTransacao, String deTrancacao, Date dataCadastro,
+			String flagAtivo) {
 		this.idTransacao = idTransacao;
 		this.deTrancacao = deTrancacao;
 		this.dataCadastro = dataCadastro;
 		this.flagAtivo = flagAtivo;
 	}
 
-	public Transacao(Integer idTransacao, String deTrancacao,
-			String observacao, Calendar dataCadastro, String flagAtivo,
+	public Transacao(Integer idTransacao, String deTrancacao, String observacao,
+			Date dataCadastro, String flagAtivo,
 			Set<Perfiltransacao> perfiltransacaos) {
 		this.idTransacao = idTransacao;
 		this.deTrancacao = deTrancacao;
@@ -86,11 +86,11 @@ public class Transacao implements java.io.Serializable {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dataCadastro", nullable = false, length = 19)
-	public Calendar getDataCadastro() {
+	public Date getDataCadastro() {
 		return this.dataCadastro;
 	}
 
-	public void setDataCadastro(Calendar dataCadastro) {
+	public void setDataCadastro(Date dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
 

@@ -1,8 +1,8 @@
 package br.com.hots.modelo.seguranca;
 
-// Generated 15/08/2015 19:23:14 by Hibernate Tools 4.3.1
+// Generated 22/08/2015 22:43:50 by Hibernate Tools 4.3.1
 
-import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -30,15 +30,15 @@ public class Perfil implements java.io.Serializable {
 	private Integer idPerfil;
 	private String dePerfil;
 	private String observacao;
-	private Calendar dataCadastro;
+	private Date dataCadastro;
 	private String flagAtivo;
-	private Set<Usuarioperfil> usuarioperfils = new HashSet<Usuarioperfil>(0);
+	private Set<Usuario> usuarios = new HashSet<Usuario>(0);
 	private Set<Perfiltransacao> perfiltransacaos = new HashSet<Perfiltransacao>(0);
 
 	public Perfil() {
 	}
 
-	public Perfil(Integer idPerfil, String dePerfil, Calendar dataCadastro,
+	public Perfil(Integer idPerfil, String dePerfil, Date dataCadastro,
 			String flagAtivo) {
 		this.idPerfil = idPerfil;
 		this.dePerfil = dePerfil;
@@ -47,15 +47,14 @@ public class Perfil implements java.io.Serializable {
 	}
 
 	public Perfil(Integer idPerfil, String dePerfil, String observacao,
-			Calendar dataCadastro, String flagAtivo,
-			Set<Usuarioperfil> usuarioperfils,
+			Date dataCadastro, String flagAtivo, Set<Usuario> usuarios,
 			Set<Perfiltransacao> perfiltransacaos) {
 		this.idPerfil = idPerfil;
 		this.dePerfil = dePerfil;
 		this.observacao = observacao;
 		this.dataCadastro = dataCadastro;
 		this.flagAtivo = flagAtivo;
-		this.usuarioperfils = usuarioperfils;
+		this.usuarios = usuarios;
 		this.perfiltransacaos = perfiltransacaos;
 	}
 
@@ -89,11 +88,11 @@ public class Perfil implements java.io.Serializable {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dataCadastro", nullable = false, length = 19)
-	public Calendar getDataCadastro() {
+	public Date getDataCadastro() {
 		return this.dataCadastro;
 	}
 
-	public void setDataCadastro(Calendar dataCadastro) {
+	public void setDataCadastro(Date dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
 
@@ -107,12 +106,12 @@ public class Perfil implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "perfil")
-	public Set<Usuarioperfil> getUsuarioperfils() {
-		return this.usuarioperfils;
+	public Set<Usuario> getUsuarios() {
+		return this.usuarios;
 	}
 
-	public void setUsuarioperfils(Set<Usuarioperfil> usuarioperfils) {
-		this.usuarioperfils = usuarioperfils;
+	public void setUsuarios(Set<Usuario> usuarios) {
+		this.usuarios = usuarios;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "perfil")
