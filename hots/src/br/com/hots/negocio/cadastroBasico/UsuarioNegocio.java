@@ -9,7 +9,7 @@ import javax.inject.Named;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 
 import br.com.hots.dao.UsuarioDAO;
-import br.com.hots.modelo.Usuario;
+import br.com.hots.modelo.seguranca.Usuario;
 
 @Named
 public class UsuarioNegocio implements Serializable {

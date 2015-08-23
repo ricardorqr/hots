@@ -1,4 +1,4 @@
-package br.com.hots.modelo;
+package br.com.hots.modelo.seguranca;
 
 // Generated 15/08/2015 19:23:14 by Hibernate Tools 4.3.1
 

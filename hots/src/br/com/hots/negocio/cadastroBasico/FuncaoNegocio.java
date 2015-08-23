@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.hots.dao.FuncaoDAO;
-import br.com.hots.modelo.Funcao;
+import br.com.hots.modelo.jogo.Funcao;
 
 @Named
 public class FuncaoNegocio implements Serializable {

@@ -7,7 +7,7 @@ import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
 
 import br.com.hots.generico.dao.GenericJPADAO;
-import br.com.hots.modelo.Heroi;
+import br.com.hots.modelo.jogo.Heroi;
 
 @Stateless
 public class HeroiDAO extends GenericJPADAO<Heroi, Integer> implements Serializable {

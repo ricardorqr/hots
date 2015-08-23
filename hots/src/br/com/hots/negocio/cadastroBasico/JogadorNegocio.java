@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.hots.dao.JogadorDAO;
-import br.com.hots.modelo.Jogador;
+import br.com.hots.modelo.jogo.Jogador;
 
 @Named
 public class JogadorNegocio implements Serializable {

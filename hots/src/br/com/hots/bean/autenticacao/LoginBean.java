@@ -10,7 +10,7 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.subject.Subject;
 
 import br.com.hots.generico.bean.GenericBean;
-import br.com.hots.modelo.Usuario;
+import br.com.hots.modelo.seguranca.Usuario;
 import br.com.hots.negocio.autenticacao.LoginNegocio;
 
 @Named

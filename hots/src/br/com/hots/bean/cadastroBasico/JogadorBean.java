@@ -8,7 +8,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.hots.generico.bean.GenericBean;
-import br.com.hots.modelo.Jogador;
+import br.com.hots.modelo.jogo.Jogador;
 import br.com.hots.negocio.cadastroBasico.JogadorNegocio;
 
 @Named

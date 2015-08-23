@@ -9,9 +9,9 @@ import javax.inject.Named;
 import br.com.hots.dao.FuncaoDAO;
 import br.com.hots.dao.HeroiDAO;
 import br.com.hots.dao.UniversoDAO;
-import br.com.hots.modelo.Funcao;
-import br.com.hots.modelo.Heroi;
-import br.com.hots.modelo.Universo;
+import br.com.hots.modelo.jogo.Funcao;
+import br.com.hots.modelo.jogo.Heroi;
+import br.com.hots.modelo.jogo.Universo;
 
 @Named
 public class HeroiNegocio implements Serializable {

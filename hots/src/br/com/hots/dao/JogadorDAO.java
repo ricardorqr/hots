@@ -6,7 +6,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 
 import br.com.hots.generico.dao.GenericJPADAO;
-import br.com.hots.modelo.Jogador;
+import br.com.hots.modelo.jogo.Jogador;
 
 @Stateless
 public class JogadorDAO extends GenericJPADAO<Jogador, Integer> implements Serializable {

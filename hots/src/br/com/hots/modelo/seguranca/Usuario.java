@@ -1,10 +1,11 @@
-package br.com.hots.modelo;
+package br.com.hots.modelo.seguranca;
 
 // Generated 15/08/2015 19:23:14 by Hibernate Tools 4.3.1
 
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -38,25 +39,11 @@ public class Usuario implements java.io.Serializable {
 	private String login;
 	private String senha;
 	private String nome;
-	private String sobreNome;
 	private String email;
-	private Calendar dataNascimento;
+	private Date dataNascimento;
 	private Calendar dataCadastro;
 	private String flagAtivo;
 	private Set<Usuarioperfil> usuarioperfils = new HashSet<Usuarioperfil>(0);
-
-	public Usuario() {
-	}
-
-	public Usuario(String login, String senha, String nome, String email,
-			Calendar dataCadastro, String flagAtivo) {
-		this.login = login;
-		this.senha = senha;
-		this.nome = nome;
-		this.email = email;
-		this.dataCadastro = dataCadastro;
-		this.flagAtivo = flagAtivo;
-	}
 
 	@PrePersist
 	public void atualizaCamposParaInsercao() {
@@ -101,22 +88,13 @@ public class Usuario implements java.io.Serializable {
 	}
 
 	@NotEmpty(message = "O campo nome é obrigatório")
-	@Column(name = "nome", nullable = false, length = 100)
+	@Column(name = "nome", nullable = false, length = 200)
 	public String getNome() {
 		return this.nome;
 	}
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	@Column(name = "sobreNome", length = 200)
-	public String getSobreNome() {
-		return this.sobreNome;
-	}
-
-	public void setSobreNome(String sobreNome) {
-		this.sobreNome = sobreNome;
 	}
 
 	@Column(name = "email", nullable = false, length = 100)
@@ -130,11 +108,11 @@ public class Usuario implements java.io.Serializable {
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "dataNascimento", length = 10)
-	public Calendar getDataNascimento() {
+	public Date getDataNascimento() {
 		return this.dataNascimento;
 	}
 
-	public void setDataNascimento(Calendar dataNascimento) {
+	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 

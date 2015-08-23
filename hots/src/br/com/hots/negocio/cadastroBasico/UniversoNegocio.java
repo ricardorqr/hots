@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.hots.dao.UniversoDAO;
-import br.com.hots.modelo.Universo;
+import br.com.hots.modelo.jogo.Universo;
 
 @Named
 public class UniversoNegocio implements Serializable {

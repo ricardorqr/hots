@@ -1,4 +1,4 @@
-package br.com.hots.modelo;
+package br.com.hots.modelo.jogo;
 
 // Generated 18/07/2015 21:46:33 by Hibernate Tools 4.3.1
 

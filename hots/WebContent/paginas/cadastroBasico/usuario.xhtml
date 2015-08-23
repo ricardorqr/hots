@@ -16,7 +16,7 @@
 					<p:inputText id="itLogin" value="#{usuarioBean.usuario.login}"
 						label="Login" required="true" />
 					<p:message for="itLogin" display="icon" />
-
+					
 					<p:outputLabel id="olSenha" for="pSenha" value="Senha" />
 					<p:password redisplay="true" id="pSenha" value="#{usuarioBean.usuario.senha}"
 						label="Senha" required="true" match="pConfirmarSenha" feedback="true" 
@@ -29,6 +29,16 @@
 						label="Confirmar Senha" required="true" feedback="true" promptLabel="Digite a senha" 
 						weakLabel="Fraco" goodLabel="Médio" strongLabel="Forte"/>
 					<p:message for="pConfirmarSenha" display="icon" />
+					
+					<p:outputLabel id="olEmail" for="itEmail" value="Email" />
+					<p:inputText id="itEmail" value="#{usuarioBean.usuario.email}"
+						label="Email" required="true" />
+					<p:message for="itEmail" display="icon" />
+					
+					<p:outputLabel id="olDataNascimento" for="itDataNascimento" value="Data Nascimento" />
+					<p:calendar id="itDataNascimento" value="#{usuarioBean.usuario.dataNascimento}"
+						label="Data Nascimento" pattern="dd/MM/yyyy" mask="true" locale="pt" />
+					<p:message for="itDataNascimento" display="icon" />
 					
 					<p:outputLabel id="olFlagAtivo" for="sorFlagAtivo" value="Ativo" />
 					<p:selectOneRadio id="sorFlagAtivo"
@@ -56,6 +66,9 @@
 					</p:column>
 					<p:column headerText="Login" sortBy="#{usuario.login}">
 						<h:outputText value="#{usuario.login}" />
+					</p:column>
+					<p:column headerText="Login" sortBy="#{usuario.email}">
+						<h:outputText value="#{usuario.email}" />
 					</p:column>
 					<p:column headerText="Ativo">
 						<h:outputText value="#{usuario.flagAtivo == 'S' ? 'Sim' : 'Não'}" />

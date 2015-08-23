@@ -9,7 +9,7 @@ import javax.inject.Named;
 
 import br.com.hots.exception.HotsException;
 import br.com.hots.generico.bean.GenericBean;
-import br.com.hots.modelo.Universo;
+import br.com.hots.modelo.jogo.Universo;
 import br.com.hots.negocio.cadastroBasico.UniversoNegocio;
 
 @Named

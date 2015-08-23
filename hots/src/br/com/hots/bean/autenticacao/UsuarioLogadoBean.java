@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
-import br.com.hots.modelo.Usuario;
+import br.com.hots.modelo.seguranca.Usuario;
 
 @Named
 @SessionScoped

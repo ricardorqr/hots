@@ -1,4 +1,4 @@
-package br.com.hots.auditoria;
+package br.com.hots.modelo.auditoria;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -15,6 +15,8 @@ import javax.persistence.TemporalType;
 import org.hibernate.envers.RevisionEntity;
 import org.hibernate.envers.RevisionNumber;
 import org.hibernate.envers.RevisionTimestamp;
+
+import br.com.hots.auditoria.AuditoriaListener;
 
 @Entity
 @Table(name="auditoriaRevisao")
