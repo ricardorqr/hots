@@ -1,0 +1,66 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/template/principal.xhtml">
+	<ui:define name="centro">
+		<p:panel id="panelNovoTransacao" header="Nova Transação">
+			<h:form id="formNovoTransacao">
+				<h:panelGrid id="panelGridTransacao" columns="3">
+					<p:outputLabel id="olTransacao" for="itTransacao" value="Transação" />
+					<p:inputText redisplay="true" id="itTransacao" value="#{transacaoBean.transacao.deTransacao}"
+						label="Transação" required="true" />
+					<p:message for="itTransacao" display="icon" />
+
+					<p:outputLabel id="olObservacao" for="itObservacao" value="Observação" />
+					<h:panelGrid columns="1">
+						<p:inputTextarea id="itObservacao" value="#{transacaoBean.transacao.observacao}"
+							label="Observação" rows="5" counter="display" maxlength="500" 
+							counterTemplate="{0} caracteres restantes" autoResize="false"/>
+						<h:outputText id="display" />
+					</h:panelGrid>
+					<p:message for="itObservacao" display="icon" />
+
+					<p:outputLabel id="olFlagAtivo" for="sorFlagAtivo" value="Ativo" />
+					<p:selectOneRadio id="sorFlagAtivo"
+						value="#{transacaoBean.transacao.flagAtivo}"
+						disabled="#{transacaoBean.transacao.flagAtivo == null ? true : false}"
+						required="true">
+						<f:selectItem itemLabel="Sim" itemValue="S" />
+						<f:selectItem itemLabel="Não" itemValue="N" />
+					</p:selectOneRadio>
+					<p:message for="sorFlagAtivo" display="icon" />
+				</h:panelGrid>
+
+				<p:commandButton value="Ok" action="#{transacaoBean.salvar}"
+					update="formGridTransacao, formNovoTransacao" icon="ui-icon-check" />
+				<p:button value="Cancelar" outcome="/template/principal.xhtml" icon="ui-icon-close" />
+			</h:form>
+		</p:panel>
+
+		<p:panel id="painelGridTransacao" header="Transações Cadastradas">
+			<h:form id="formGridTransacao">
+				<p:dataTable var="transacao" value="#{transacaoBean.transacoes}" 
+					rowKey="#{transacao.idTransacao}" emptyMessage="Sem registros cadastrados">
+					<p:column headerText="Transação" sortBy="#{transacao.deTransacao}">
+						<h:outputText value="#{transacao.deTransacao}" />
+					</p:column>
+					<p:column headerText="Ativo">
+						<h:outputText value="#{transacao.flagAtivo == 'S' ? 'Sim' : 'Não'}" />
+					</p:column>
+					<p:column headerText="Opções">
+						<p:commandButton title="Editar" update="formNovoTransacao" icon="ui-icon-pencil">
+							<f:setPropertyActionListener value="#{transacao}" target="#{transacaoBean.transacao}"/>
+						</p:commandButton> |
+						<p:commandButton title="Remover Permanentemente" update="formGridTransacao"
+							action="#{transacaoBean.removerPermanentemente}" icon="ui-icon-trash">
+							<f:setPropertyActionListener value="#{transacao}" target="#{transacaoBean.transacao}"/>
+							<p:confirm header="Exclusão" message="Tem certeza que deseja excluir o registro?" 
+								icon="ui-icon-alert" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</p:panel>
+	</ui:define>
+</ui:composition>
