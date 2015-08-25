@@ -1,4 +1,4 @@
-package br.com.hots.negocio.cadastroBasico;
+package br.com.hots.negocio.seguranca;
 
 import java.io.Serializable;
 import java.util.List;

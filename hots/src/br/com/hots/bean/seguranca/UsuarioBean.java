@@ -1,4 +1,4 @@
-package br.com.hots.bean.cadastroBasico;
+package br.com.hots.bean.seguranca;
 
 import java.io.Serializable;
 import java.util.List;
@@ -9,7 +9,7 @@ import javax.inject.Named;
 
 import br.com.hots.generico.bean.GenericBean;
 import br.com.hots.modelo.seguranca.Usuario;
-import br.com.hots.negocio.cadastroBasico.UsuarioNegocio;
+import br.com.hots.negocio.seguranca.UsuarioNegocio;
 
 @Named
 @ViewScoped

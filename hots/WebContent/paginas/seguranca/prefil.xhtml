@@ -1,0 +1,66 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/template/principal.xhtml">
+	<ui:define name="centro">
+		<p:panel id="panelNovoPerfil" header="Novo Perfil">
+			<h:form id="formNovoPerfil">
+				<h:panelGrid id="panelGridPerfil" columns="3">
+					<p:outputLabel id="olPerfil" for="itPerfil" value="Perfil" />
+					<p:inputText redisplay="true" id="itPerfil" value="#{perfilBean.perfil.dePerfil}"
+						label="Perfil" required="true" />
+					<p:message for="itPerfil" display="icon" />
+
+					<p:outputLabel id="olObservacao" for="itObservacao" value="Observação" />
+					<h:panelGrid columns="1">
+						<p:inputTextarea id="itObservacao" value="#{perfilBean.perfil.observacao}"
+							label="Observação" rows="5" counter="display" maxlength="500" 
+							counterTemplate="{0} caracteres restantes" autoResize="false"/>
+						<h:outputText id="display" />
+					</h:panelGrid>
+					<p:message for="itObservacao" display="icon" />
+
+					<p:outputLabel id="olFlagAtivo" for="sorFlagAtivo" value="Ativo" />
+					<p:selectOneRadio id="sorFlagAtivo"
+						value="#{perfilBean.perfil.flagAtivo}"
+						disabled="#{perfilBean.perfil.flagAtivo == null ? true : false}"
+						required="true">
+						<f:selectItem itemLabel="Sim" itemValue="S" />
+						<f:selectItem itemLabel="Não" itemValue="N" />
+					</p:selectOneRadio>
+					<p:message for="sorFlagAtivo" display="icon" />
+				</h:panelGrid>
+
+				<p:commandButton value="Ok" action="#{perfilBean.salvar}"
+					update="formGridPerfil, formNovoPerfil" icon="ui-icon-check" />
+				<p:button value="Cancelar" outcome="/template/principal.xhtml" icon="ui-icon-close" />
+			</h:form>
+		</p:panel>
+
+		<p:panel id="painelGridPerfil" header="Perfis Cadastrados">
+			<h:form id="formGridPerfil">
+				<p:dataTable var="perfil" value="#{perfilBean.perfis}" 
+					rowKey="#{perfil.idPerfil}" emptyMessage="Sem registros cadastrados">
+					<p:column headerText="Perfil" sortBy="#{perfil.dePerfil}">
+						<h:outputText value="#{perfil.dePerfil}" />
+					</p:column>
+					<p:column headerText="Ativo">
+						<h:outputText value="#{perfil.flagAtivo == 'S' ? 'Sim' : 'Não'}" />
+					</p:column>
+					<p:column headerText="Opções">
+						<p:commandButton title="Editar" update="formNovoPerfil" icon="ui-icon-pencil">
+							<f:setPropertyActionListener value="#{perfil}" target="#{perfilBean.perfil}"/>
+						</p:commandButton> |
+						<p:commandButton title="Remover Permanentemente" update="formGridPerfil"
+							action="#{perfilBean.removerPermanentemente}" icon="ui-icon-trash">
+							<f:setPropertyActionListener value="#{perfil}" target="#{perfilBean.perfil}"/>
+							<p:confirm header="Exclusão" message="Tem certeza que deseja excluir o registro?" 
+								icon="ui-icon-alert" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</p:panel>
+	</ui:define>
+</ui:composition>

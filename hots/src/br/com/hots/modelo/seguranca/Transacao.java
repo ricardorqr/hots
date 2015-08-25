@@ -2,6 +2,9 @@ package br.com.hots.modelo.seguranca;
 
 // Generated 22/08/2015 22:43:50 by Hibernate Tools 4.3.1
 
+import static javax.persistence.GenerationType.IDENTITY;
+
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,8 +12,11 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -55,8 +61,20 @@ public class Transacao implements java.io.Serializable {
 		this.flagAtivo = flagAtivo;
 		this.perfiltransacaos = perfiltransacaos;
 	}
+	
+	@PrePersist
+	public void atualizaCamposParaInsercao() {
+		setDataCadastro(Calendar.getInstance().getTime());
+		setFlagAtivo("S");
+	}
+
+	@PreUpdate
+	public void atualizaCamposParaAtualizacao() {
+		setDataCadastro(Calendar.getInstance().getTime());
+	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "idTransacao", unique = true, nullable = false)
 	public Integer getIdTransacao() {
 		return this.idTransacao;

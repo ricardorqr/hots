@@ -1,4 +1,4 @@
-package br.com.hots.bean.cadastroBasico;
+package br.com.hots.bean.jogo;
 
 import java.io.Serializable;
 import java.util.List;
@@ -9,7 +9,7 @@ import javax.inject.Named;
 
 import br.com.hots.generico.bean.GenericBean;
 import br.com.hots.modelo.jogo.Jogador;
-import br.com.hots.negocio.cadastroBasico.JogadorNegocio;
+import br.com.hots.negocio.jogo.JogadorNegocio;
 
 @Named
 @ViewScoped
