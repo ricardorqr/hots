@@ -53,6 +53,14 @@ public class PerfilBean extends GenericBean implements Serializable {
 
 		return perfis;
 	}
+	
+	public List<Perfil> getListaPerfilAtivo() {
+		if (perfis == null || perfis.isEmpty()) {
+			perfis = negocio.getListaTodosAtivos();
+		}
+
+		return perfis;
+	}
 
 	private void limparTela() {
 		perfil = new Perfil();
