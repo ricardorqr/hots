@@ -2,6 +2,7 @@ package br.com.hots.modelo.seguranca;
 
 // Generated 22/08/2015 22:43:50 by Hibernate Tools 4.3.1
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.AttributeOverride;
@@ -12,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -43,6 +46,16 @@ public class Perfiltransacao implements java.io.Serializable {
 		this.transacao = transacao;
 		this.dataCadastro = dataCadastro;
 		this.flagAtivo = flagAtivo;
+	}
+	
+	@PrePersist
+	public void atualizaCamposParaInsercao() {
+		setDataCadastro(Calendar.getInstance().getTime());
+	}
+
+	@PreUpdate
+	public void atualizaCamposParaAtualizacao() {
+		setDataCadastro(Calendar.getInstance().getTime());
 	}
 
 	@EmbeddedId

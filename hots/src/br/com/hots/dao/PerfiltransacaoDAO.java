@@ -21,12 +21,24 @@ public class PerfiltransacaoDAO extends GenericJPADAO<Perfiltransacao, Perfiltra
 				.getResultList();
 	}
 	
-	public List<Transacao> getListaTransacoesPorPerfil(Integer idPerfil) {
+	public List<Transacao> getListaTransacoesAtivaPorPerfil(Integer idPerfil) {
 		return manager.createQuery(
 				" select p.transacao " + 
 				" from Perfiltransacao p where p.perfil.idPerfil = :idPerfil " + 
 				" and p.perfil.flagAtivo = 'S' " + 
 				" and p.transacao.flagAtivo = 'S' " + 
+				" and p.flagAtivo = 'S' " + 
+				" order by p.transacao.deTransacao ", Transacao.class).setParameter("idPerfil", idPerfil)
+				.getResultList();
+	}
+	
+	public List<Transacao> getListaTransacoesInativaPorPerfil(Integer idPerfil) {
+		return manager.createQuery(
+				" select p.transacao " + 
+				" from Perfiltransacao p where p.perfil.idPerfil = :idPerfil " + 
+				" and p.perfil.flagAtivo = 'S' " + 
+				" and p.transacao.flagAtivo = 'S' " + 
+				" and p.flagAtivo = 'N' " + 
 				" order by p.transacao.deTransacao ", Transacao.class).setParameter("idPerfil", idPerfil)
 				.getResultList();
 	}

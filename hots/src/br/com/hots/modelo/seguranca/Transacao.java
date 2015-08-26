@@ -1,6 +1,6 @@
 package br.com.hots.modelo.seguranca;
 
-// Generated 22/08/2015 22:43:50 by Hibernate Tools 4.3.1
+// Generated 26/08/2015 10:41:16 by Hibernate Tools 4.3.1
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -35,6 +35,7 @@ public class Transacao implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer idTransacao;
 	private String deTransacao;
+	private String pagina;
 	private String observacao;
 	private Date dataCadastro;
 	private String flagAtivo;
@@ -43,19 +44,21 @@ public class Transacao implements java.io.Serializable {
 	public Transacao() {
 	}
 
-	public Transacao(Integer idTransacao, String deTransacao, Date dataCadastro,
+	public Transacao(Integer idTransacao, String deTransacao, String pagina, Date dataCadastro,
 			String flagAtivo) {
 		this.idTransacao = idTransacao;
 		this.deTransacao = deTransacao;
+		this.pagina = pagina;
 		this.dataCadastro = dataCadastro;
 		this.flagAtivo = flagAtivo;
 	}
 
-	public Transacao(Integer idTransacao, String deTransacao, String observacao,
+	public Transacao(Integer idTransacao, String deTransacao, String pagina, String observacao,
 			Date dataCadastro, String flagAtivo,
 			Set<Perfiltransacao> perfiltransacaos) {
 		this.idTransacao = idTransacao;
 		this.deTransacao = deTransacao;
+		this.pagina = pagina;
 		this.observacao = observacao;
 		this.dataCadastro = dataCadastro;
 		this.flagAtivo = flagAtivo;
@@ -91,6 +94,15 @@ public class Transacao implements java.io.Serializable {
 
 	public void setDeTransacao(String deTransacao) {
 		this.deTransacao = deTransacao;
+	}
+
+	@Column(name = "pagina", nullable = false, length = 200)
+	public String getPagina() {
+		return this.pagina;
+	}
+
+	public void setPagina(String pagina) {
+		this.pagina = pagina;
 	}
 
 	@Column(name = "observacao", length = 500)

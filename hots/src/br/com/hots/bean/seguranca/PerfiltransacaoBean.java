@@ -31,35 +31,45 @@ public class PerfiltransacaoBean extends GenericBean implements Serializable {
 		try {
 			transacoesOrigem = transacoes.getSource();
 			transacoesDestino = transacoes.getTarget();
+			negocio.salvarPerfiltransacao(idPerfil, transacoesOrigem, transacoesDestino);
 			
 			limparTela();
 		} catch (Exception e) {
+			e.printStackTrace();
 			addMensagemFATAL(e.getLocalizedMessage());
 		}
 	}
 
 	public void listarTransacoesPorPerfil() {
 		if (idPerfil != null) {
-			transacoesOrigem = negocio.getListaTransacoesPorPerfil(idPerfil);
+			transacoesOrigem = negocio.getListaTransacoesAtivaPorPerfil(idPerfil);
+			transacoesDestino = negocio.getListaTransacoesInativaPorPerfil(idPerfil);
 			
-			if (transacoesOrigem == null || transacoesOrigem.isEmpty()) {
+			if (transacoesOrigem == null || transacoesOrigem.isEmpty() && 
+					transacoesDestino == null || transacoesDestino.isEmpty()) {
 				transacoesOrigem = negocio.getListaTrasacoesAtivos();
 			}
+			
 		}
 		
 		transacoes = new DualListModel<Transacao>(transacoesOrigem, transacoesDestino);
 	}
-
+	
+	private void limparTela() {
+		idPerfil = null;
+		transacoes = new DualListModel<Transacao>(new ArrayList<Transacao>(), new ArrayList<Transacao>());
+	}
+	
+	public void setTransacoes(DualListModel<Transacao> transacoes) {
+		this.transacoes = transacoes;
+	}
+	
 	public DualListModel<Transacao> getTransacoes() {
 		if (transacoes == null) {
 			transacoes = new DualListModel<Transacao>(transacoesOrigem, transacoesDestino);
 		}
 		
 		return transacoes;
-	}
-	
-	private void limparTela() {
-		idPerfil = null;
 	}
 	
 	public Integer getIdPerfil() {
@@ -69,9 +79,4 @@ public class PerfiltransacaoBean extends GenericBean implements Serializable {
 	public void setIdPerfil(Integer idPerfil) {
 		this.idPerfil = idPerfil;
 	}
-
-	public void setTransacoes(DualListModel<Transacao> transacoes) {
-		this.transacoes = transacoes;
-	}
-
 }

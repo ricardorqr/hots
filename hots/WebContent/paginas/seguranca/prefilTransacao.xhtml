@@ -16,12 +16,15 @@
             		</p:selectOneMenu>
 					<p:message for="somPerfil" display="icon" />
 				</h:panelGrid>
-				
-				<p:pickList id="pkPerfiltransacao" value="#{perfiltransacaoBean.transacoes}" var="transacao" 
-					itemLabel="#{transacao.deTransacao}" itemValue="#{transacao}" converter="transacaoConverter">
-					<f:facet name="sourceCaption">Transações Permitidas</f:facet>
-        			<f:facet name="targetCaption">Transações Bloqueadas</f:facet>
-				</p:pickList>
+					
+				<h:panelGrid columns="1">
+					<p:pickList id="pkPerfiltransacao" value="#{perfiltransacaoBean.transacoes}" var="transacao" 
+						itemLabel="#{transacao.deTransacao}" itemValue="#{transacao}" converter="transacaoConverter"
+						style="">
+						<f:facet name="sourceCaption">Transações Permitidas</f:facet>
+	        			<f:facet name="targetCaption">Transações Bloqueadas</f:facet>
+					</p:pickList>
+				</h:panelGrid>
 
 				<p:commandButton value="Ok" action="#{perfiltransacaoBean.salvar}"
 					update="formNovoJogador" icon="ui-icon-check" />
