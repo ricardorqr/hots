@@ -8,7 +8,9 @@ import javax.inject.Named;
 
 import org.apache.shiro.crypto.hash.Sha256Hash;
 
+import br.com.hots.dao.PerfilDAO;
 import br.com.hots.dao.UsuarioDAO;
+import br.com.hots.modelo.seguranca.Perfil;
 import br.com.hots.modelo.seguranca.Usuario;
 
 @Named
@@ -18,13 +20,19 @@ public class UsuarioNegocio implements Serializable {
 	
 	@Inject
 	private UsuarioDAO usuarioDAO;
+	@Inject
+	private PerfilDAO perfilDAO;
 
-	public void cadastrarUsuario(Usuario usuario) {
+	public void cadastrarUsuario(Usuario usuario, Integer idPerfil) {
+		Perfil perfil = perfilDAO.buscar(idPerfil);
+		usuario.setPerfil(perfil);
 		usuario.setSenha(new Sha256Hash(usuario.getSenha()).toHex());
 		usuarioDAO.salvar(usuario);
 	}
 	
-	public void editarUsuario(Usuario usuario) {
+	public void editarUsuario(Usuario usuario, Integer idPerfil) {
+		Perfil perfil = perfilDAO.buscar(idPerfil);
+		usuario.setPerfil(perfil);
 		usuario.setSenha(new Sha256Hash(usuario.getSenha()).toHex());
 		usuarioDAO.atualizar(usuario);
 	}

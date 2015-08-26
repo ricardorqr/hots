@@ -2,33 +2,53 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:shiro="http://shiro.apache.org/tags">
 	<h:form>
 		<p:menubar>
 			<p:submenu label="File" icon="ui-icon-document">
 				<p:menuitem value="Logoff" action="#{loginBean.logoff()}" icon="ui-icon-power" />
 			</p:submenu>
 			
-			<p:submenu label="Jogo" icon="ui-icon-document">
-				<p:separator />
-				<p:menuitem value="Jogador" outcome="/paginas/jogo/jogador.xhtml" />
-			</p:submenu>
+			<shiro:hasAnyPermission name="jogo">
+				<p:submenu label="Jogo" icon="ui-icon-document">
+					<shiro:hasAnyPermission name="jogador">
+						<p:menuitem value="Jogador" outcome="/paginas/jogo/jogador.xhtml" />
+					</shiro:hasAnyPermission>
+				</p:submenu>
+			</shiro:hasAnyPermission>
 			
-			<p:submenu label="Cadastros Básicos" icon="ui-icon-document">
-				<p:separator />
-				<p:menuitem value="Função" outcome="/paginas/cadastroBasico/funcao.xhtml" />
-				<p:menuitem value="Herói" outcome="/paginas/cadastroBasico/heroi.xhtml" />
-				<p:menuitem value="Universo" outcome="/paginas/cadastroBasico/universo.xhtml" />
-			</p:submenu>
+			<shiro:hasAnyPermission name="cadastroBasico">
+				<p:submenu label="Cadastros Básicos" icon="ui-icon-document">
+					<shiro:hasAnyPermission name="funcao">
+						<p:menuitem value="Função" outcome="/paginas/cadastroBasico/funcao.xhtml" />
+					</shiro:hasAnyPermission>
+					<shiro:hasAnyPermission name="heroi">
+						<p:menuitem value="Herói" outcome="/paginas/cadastroBasico/heroi.xhtml" />
+					</shiro:hasAnyPermission>
+					<shiro:hasAnyPermission name="universo">
+						<p:menuitem value="Universo" outcome="/paginas/cadastroBasico/universo.xhtml" />
+					</shiro:hasAnyPermission>
+				</p:submenu>
+			</shiro:hasAnyPermission>
 			
-			<p:submenu label="Segurança" icon="ui-icon-document">
-				<p:separator />
-				<p:menuitem value="Prefil" outcome="/paginas/seguranca/prefil.xhtml" />
-				<p:menuitem value="Página" outcome="/paginas/seguranca/transacao.xhtml" />
-				<p:menuitem value="Prefil x Página" outcome="/paginas/seguranca/prefilTransacao.xhtml" />
-				<p:separator />
-				<p:menuitem value="Usuário Sistema" icon="ui-icon-person" outcome="/paginas/seguranca/usuario.xhtml" />
-			</p:submenu>
+			<shiro:hasAnyPermission name="seguranca">
+				<p:submenu label="Segurança" icon="ui-icon-document">
+					<shiro:hasAnyPermission name="prefil">
+						<p:menuitem value="Prefil" outcome="/paginas/seguranca/prefil.xhtml" />
+					</shiro:hasAnyPermission>
+					<shiro:hasAnyPermission name="transacao">
+						<p:menuitem value="Página" outcome="/paginas/seguranca/transacao.xhtml" />
+					</shiro:hasAnyPermission>
+					<shiro:hasAnyPermission name="prefilTransacao">
+						<p:menuitem value="Prefil x Página" outcome="/paginas/seguranca/prefilTransacao.xhtml" />
+					</shiro:hasAnyPermission>
+					<p:separator />
+					<shiro:hasAnyPermission name="usuario">
+						<p:menuitem value="Usuário Sistema" icon="ui-icon-person" outcome="/paginas/seguranca/usuario.xhtml" />
+					</shiro:hasAnyPermission>
+				</p:submenu>
+			</shiro:hasAnyPermission>
 	
 			<f:facet name="options">
 				<p:button value="Tela Principal" icon="ui-icon-home" outcome="/template/principal.xhtml" />

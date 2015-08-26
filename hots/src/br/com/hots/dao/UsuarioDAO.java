@@ -16,7 +16,7 @@ public class UsuarioDAO extends GenericJPADAO<Usuario, Integer> implements Seria
 
 	public List<Usuario> getListaTodos() {
 		return manager.createQuery(
-				" select u from Usuario u order by u.nome ", Usuario.class)
+				" select u from Usuario u join fetch u.perfil order by u.nome ", Usuario.class)
 				.getResultList();
 	}
 

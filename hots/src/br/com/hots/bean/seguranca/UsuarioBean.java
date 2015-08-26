@@ -21,13 +21,14 @@ public class UsuarioBean extends GenericBean implements Serializable {
 	private UsuarioNegocio negocio;
 	private Usuario usuario = new Usuario();
 	private List<Usuario> usuarios;
+	private Integer idPerfil;
 	
 	public void salvar() {
 		try {
 			if (usuario.getIdUsuario() == null) {
-				negocio.cadastrarUsuario(usuario);
+				negocio.cadastrarUsuario(usuario, idPerfil);
 			} else {
-				negocio.editarUsuario(usuario);
+				negocio.editarUsuario(usuario, idPerfil);
 			}
 			
 			limparTela();
@@ -57,6 +58,7 @@ public class UsuarioBean extends GenericBean implements Serializable {
 	}
 	
 	private void limparTela() {
+		idPerfil = null;
 		usuario = new Usuario();
 		usuarios= negocio.getListaTodos();
 	}
@@ -67,6 +69,14 @@ public class UsuarioBean extends GenericBean implements Serializable {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public Integer getIdPerfil() {
+		return idPerfil;
+	}
+
+	public void setIdPerfil(Integer idPerfil) {
+		this.idPerfil = idPerfil;
 	}
 
 }

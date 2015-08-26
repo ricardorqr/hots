@@ -43,6 +43,7 @@ public class PerfiltransacaoNegocio implements Serializable {
 				perfiltransacao.setId(id);
 				perfiltransacao.setPerfil(perfil);
 				perfiltransacao.setTransacao(transacao);
+				perfiltransacao.setFlagAtivo("S");
 				perfiltransacaoDAO.salvar(perfiltransacao);
 			} else {
 				perfiltransacao.setFlagAtivo("S");

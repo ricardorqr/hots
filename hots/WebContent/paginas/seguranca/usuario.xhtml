@@ -30,6 +30,14 @@
 						weakLabel="Fraco" goodLabel="Médio" strongLabel="Forte"/>
 					<p:message for="pConfirmarSenha" display="icon" />
 					
+					<p:outputLabel id="olPerfil" for="somPerfil" value="Perfil" />
+					<p:selectOneMenu id="somPerfil" value="#{usuarioBean.idPerfil}" required="true">
+						<f:selectItem itemLabel=" -- Selecione -- " itemValue="" />
+            			<f:selectItems value="#{perfilBean.listaPerfilAtivo}" var="perfil" 
+            				itemLabel="#{perfil.dePerfil}" itemValue="#{perfil.idPerfil}" />
+            		</p:selectOneMenu>
+					<p:message for="somPerfil" display="icon" />
+					
 					<p:outputLabel id="olEmail" for="itEmail" value="Email" />
 					<p:inputText id="itEmail" value="#{usuarioBean.usuario.email}"
 						label="Email" required="true" />
@@ -67,7 +75,10 @@
 					<p:column headerText="Login" sortBy="#{usuario.login}">
 						<h:outputText value="#{usuario.login}" />
 					</p:column>
-					<p:column headerText="Login" sortBy="#{usuario.email}">
+					<p:column headerText="Perfil" sortBy="#{usuario.perfil.dePerfil}">
+						<h:outputText value="#{usuario.perfil.dePerfil}" />
+					</p:column>
+					<p:column headerText="Email" sortBy="#{usuario.email}">
 						<h:outputText value="#{usuario.email}" />
 					</p:column>
 					<p:column headerText="Ativo">
@@ -76,6 +87,7 @@
 					<p:column headerText="Opções">
 						<p:commandButton title="Editar" update="formNovoUsuario" icon="ui-icon-pencil">
 							<f:setPropertyActionListener value="#{usuario}" target="#{usuarioBean.usuario}"/>
+							<f:setPropertyActionListener value="#{usuario.perfil.idPerfil}" target="#{usuarioBean.idPerfil}"/>
 						</p:commandButton> |
 						<p:commandButton title="Remover Permanentemente" update="formGridUsuario"
 							action="#{usuarioBean.removerPermanentemente}" icon="ui-icon-trash">

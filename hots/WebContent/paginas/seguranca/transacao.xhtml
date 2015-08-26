@@ -11,11 +11,16 @@
 					<p:inputText redisplay="true" id="itTransacao" value="#{transacaoBean.transacao.deTransacao}"
 						label="Transação" required="true" />
 					<p:message for="itTransacao" display="icon" />
+					
+					<p:outputLabel id="olPagina" for="itPagina" value="Página" />
+					<p:inputText redisplay="true" id="itPagina" value="#{transacaoBean.transacao.pagina}"
+						label="Pagina" required="true" size="50" />
+					<p:message for="itPagina" display="icon" />
 
 					<p:outputLabel id="olObservacao" for="itObservacao" value="Observação" />
 					<h:panelGrid columns="1">
 						<p:inputTextarea id="itObservacao" value="#{transacaoBean.transacao.observacao}"
-							label="Observação" rows="5" counter="display" maxlength="500" 
+							label="Observação" rows="5" counter="display" maxlength="500" cols="52" 
 							counterTemplate="{0} caracteres restantes" autoResize="false"/>
 						<h:outputText id="display" />
 					</h:panelGrid>
@@ -44,6 +49,9 @@
 					rowKey="#{transacao.idTransacao}" emptyMessage="Sem registros cadastrados">
 					<p:column headerText="Transação" sortBy="#{transacao.deTransacao}">
 						<h:outputText value="#{transacao.deTransacao}" />
+					</p:column>
+					<p:column headerText="Página" sortBy="#{transacao.pagina}">
+						<h:outputText value="#{transacao.pagina}" />
 					</p:column>
 					<p:column headerText="Ativo">
 						<h:outputText value="#{transacao.flagAtivo == 'S' ? 'Sim' : 'Não'}" />
