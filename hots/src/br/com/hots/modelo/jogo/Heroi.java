@@ -24,6 +24,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.envers.Audited;
 import org.hibernate.envers.NotAudited;
@@ -108,7 +109,7 @@ public class Heroi implements java.io.Serializable {
 		this.idHeroi = idHeroi;
 	}
 
-	@NotEmpty(message = "O campo função é obrigatório")
+	@NotNull(message = "O campo função é obrigatório")
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idFuncao", nullable = false)
 	public Funcao getFuncao() {
@@ -119,7 +120,7 @@ public class Heroi implements java.io.Serializable {
 		this.funcao = funcao;
 	}
 
-	@NotEmpty(message = "O campo universo é obrigatório")
+	@NotNull(message = "O campo universo é obrigatório")
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idUniverso", nullable = false)
 	public Universo getUniverso() {
@@ -140,7 +141,7 @@ public class Heroi implements java.io.Serializable {
 		this.nome = nome;
 	}
 
-	@NotEmpty(message = "O campo dano é obrigatório")
+	@NotNull(message = "O campo dano é obrigatório")
 	@Column(name = "dano", nullable = false)
 	public Integer getDano() {
 		return this.dano;
@@ -150,7 +151,7 @@ public class Heroi implements java.io.Serializable {
 		this.dano = dano;
 	}
 
-	@NotEmpty(message = "O campo utilidde é obrigatório")
+	@NotNull(message = "O campo utilidde é obrigatório")
 	@Column(name = "utilidade", nullable = false)
 	public Integer getUtilidade() {
 		return this.utilidade;
@@ -160,7 +161,7 @@ public class Heroi implements java.io.Serializable {
 		this.utilidade = utilidade;
 	}
 
-	@NotEmpty(message = "O campo sobrevivência é obrigatório")
+	@NotNull(message = "O campo sobrevivência é obrigatório")
 	@Column(name = "sobrevivencia", nullable = false)
 	public Integer getSobrevivencia() {
 		return this.sobrevivencia;
@@ -170,7 +171,7 @@ public class Heroi implements java.io.Serializable {
 		this.sobrevivencia = sobrevivencia;
 	}
 
-	@NotEmpty(message = "O campo complexidade é obrigatório")
+	@NotNull(message = "O campo complexidade é obrigatório")
 	@Column(name = "complexidade", nullable = false)
 	public Integer getComplexidade() {
 		return this.complexidade;

@@ -10,20 +10,25 @@
 	<h:body>
 		<p:messages autoUpdate="true" closable="true" />
 		
-		<h:form id="formLogin">	
-			<p:panel header="Autenticar">
+		<p:panel style="border: none">
+			<h2>Autenticar</h2>
+			<p:separator />
+			<h:form id="formLogin">	
 				<h:panelGrid id="gLogin" columns="3" >
 					<p:outputLabel for="username" value="Login" />
-					<p:inputText id="username" value="#{loginBean.usuario.login}" required="true" label="Login" />
+					<p:inputText id="username" value="#{loginBean.usuario.login}" 
+						required="true" label="Login" />
 					<p:message for="username" display="icon" />
 					
 					<p:outputLabel for="password" value="Senha" />
-					<p:password id="password" value="#{loginBean.usuario.senha}" required="true" label="Senha" />
+					<p:password id="password" value="#{loginBean.usuario.senha}" 
+						required="true" label="Senha" />
 					<p:message for="password" display="icon" />
 				</h:panelGrid>
 				
-				<p:commandButton value="Ok" action="#{loginBean.logar}" update="formLogin" />
-			</p:panel>
-		</h:form>
+				<p:commandButton value="Ok" action="#{loginBean.logar}" 
+					update="formLogin" />
+			</h:form>
+		</p:panel>
 	</h:body>
 </html>

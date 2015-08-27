@@ -4,7 +4,9 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui" template="/template/principal.xhtml">
 	<ui:define name="centro">
-		<p:panel id="panelNovoTransacao" header="Nova Transação">
+		<p:panel style="border: none">
+			<h2>Nova Transação</h2>
+			<p:separator />
 			<h:form id="formNovoTransacao">
 				<h:panelGrid id="panelGridTransacao" columns="3">
 					<p:outputLabel id="olTransacao" for="itTransacao" value="Transação" />
@@ -14,23 +16,22 @@
 					
 					<p:outputLabel id="olPagina" for="itPagina" value="Página" />
 					<p:inputText redisplay="true" id="itPagina" value="#{transacaoBean.transacao.pagina}"
-						label="Pagina" required="true" size="50" />
+						label="Pagina" required="true" />
 					<p:message for="itPagina" display="icon" />
 
 					<p:outputLabel id="olObservacao" for="itObservacao" value="Observação" />
 					<h:panelGrid columns="1">
 						<p:inputTextarea id="itObservacao" value="#{transacaoBean.transacao.observacao}"
-							label="Observação" rows="5" counter="display" maxlength="500" cols="52" 
-							counterTemplate="{0} caracteres restantes" autoResize="false"/>
+							label="Observação" rows="5" counter="display" maxlength="500"
+							counterTemplate="{0} caracteres restantes" autoResize="false"
+							style="width: 108%"/>
 						<h:outputText id="display" />
 					</h:panelGrid>
 					<p:message for="itObservacao" display="icon" />
 
 					<p:outputLabel id="olFlagAtivo" for="sorFlagAtivo" value="Ativo" />
-					<p:selectOneRadio id="sorFlagAtivo"
-						value="#{transacaoBean.transacao.flagAtivo}"
-						disabled="#{transacaoBean.transacao.flagAtivo == null ? true : false}"
-						required="true">
+					<p:selectOneRadio id="sorFlagAtivo" value="#{transacaoBean.transacao.flagAtivo}"
+						disabled="#{transacaoBean.transacao.flagAtivo == null ? true : false}">
 						<f:selectItem itemLabel="Sim" itemValue="S" />
 						<f:selectItem itemLabel="Não" itemValue="N" />
 					</p:selectOneRadio>
@@ -43,14 +44,20 @@
 			</h:form>
 		</p:panel>
 
-		<p:panel id="painelGridTransacao" header="Transações Cadastradas">
+		<p:panel style="border: none">
+			<h2>Transações Cadastradas</h2>
+			<p:separator />
 			<h:form id="formGridTransacao">
-				<p:dataTable var="transacao" value="#{transacaoBean.transacoes}" 
-					rowKey="#{transacao.idTransacao}" emptyMessage="Sem registros cadastrados">
-					<p:column headerText="Transação" sortBy="#{transacao.deTransacao}">
+				<p:dataTable var="transacao" value="#{transacaoBean.transacoes}" paginator="true" rows="5"
+					emptyMessage="Sem registros cadastrados" rowsPerPageTemplate="5, 50, 100"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					widgetVar="tabelaHeroi" stickyHeader="true" filteredValue="#{heroiBean.filtroTabela}">
+					<p:column filterBy="#{transacao.deTransacao}" headerText="Transação" 
+						sortBy="#{transacao.deTransacao}" filterMatchMode="contains">
 						<h:outputText value="#{transacao.deTransacao}" />
 					</p:column>
-					<p:column headerText="Página" sortBy="#{transacao.pagina}">
+					<p:column filterBy="#{transacao.pagina}" headerText="Página" 
+						sortBy="#{transacao.pagina}" filterMatchMode="contains">
 						<h:outputText value="#{transacao.pagina}" />
 					</p:column>
 					<p:column headerText="Ativo">
@@ -60,7 +67,7 @@
 						<p:commandButton title="Editar" update="formNovoTransacao" icon="ui-icon-pencil">
 							<f:setPropertyActionListener value="#{transacao}" target="#{transacaoBean.transacao}"/>
 						</p:commandButton> |
-						<p:commandButton title="Remover Permanentemente" update="formGridTransacao"
+						<p:commandButton title="Remover Permanentemente" update="formGridTransacao, formNovoTransacao"
 							action="#{transacaoBean.removerPermanentemente}" icon="ui-icon-trash">
 							<f:setPropertyActionListener value="#{transacao}" target="#{transacaoBean.transacao}"/>
 							<p:confirm header="Exclusão" message="Tem certeza que deseja excluir o registro?" 

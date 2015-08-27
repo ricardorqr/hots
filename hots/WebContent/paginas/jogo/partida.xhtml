@@ -4,9 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui" template="/template/principal.xhtml">
 	<ui:define name="centro">
-		<p:panel style="border:none">
-			<h2>Novo Jogador</h2>
-			<p:separator />
+		<p:panel id="panelNovoJogador" header="Novo Jogador">
 			<h:form id="formNovoJogador">
 				<h:panelGrid id="panelGridJogador" columns="3">
 					<p:outputLabel id="olNome" for="itNome" value="Nome" />
@@ -25,8 +23,10 @@
 					<p:message for="itEmail" display="icon" />
 					
 					<p:outputLabel id="olFlagAtivo" for="sorFlagAtivo" value="Ativo" />
-					<p:selectOneRadio id="sorFlagAtivo" value="#{jogadorBean.jogador.flagAtivo}"
-						disabled="#{jogadorBean.jogador.flagAtivo == null ? true : false}">
+					<p:selectOneRadio id="sorFlagAtivo"
+						value="#{jogadorBean.jogador.flagAtivo}"
+						disabled="#{jogadorBean.jogador.flagAtivo == null ? true : false}"
+						required="true">
 						<f:selectItem itemLabel="Sim" itemValue="S" />
 						<f:selectItem itemLabel="Não" itemValue="N" />
 					</p:selectOneRadio>
@@ -39,9 +39,7 @@
 			</h:form>
 		</p:panel>
 
-		<p:panel style="border:none">
-			<h2>Jogadores Cadastrados</h2>
-			<p:separator />
+		<p:panel id="painelGridJogador" header="Jogadores Cadastrados">
 			<h:form id="formGridJogador">
 				<p:dataTable var="jogador" value="#{jogadorBean.jogadores}" 
 					rowKey="#{jogador.idJogador}" emptyMessage="Sem registros cadastrados">
@@ -61,7 +59,7 @@
 						<p:commandButton title="Editar" update="formNovoJogador" icon="ui-icon-pencil">
 							<f:setPropertyActionListener value="#{jogador}" target="#{jogadorBean.jogador}"/>
 						</p:commandButton> |
-						<p:commandButton title="Remover Permanentemente" update="formGridJogador, formNovoJogador"
+						<p:commandButton title="Remover Permanentemente" update="formGridJogador"
 							action="#{jogadorBean.removerPermanentemente}" icon="ui-icon-trash">
 							<f:setPropertyActionListener value="#{jogador}" target="#{jogadorBean.jogador}"/>
 							<p:confirm header="Exclusão" message="Tem certeza que deseja excluir o registro?" 

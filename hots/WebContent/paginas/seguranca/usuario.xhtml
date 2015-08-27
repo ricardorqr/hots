@@ -4,7 +4,9 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui" template="/template/principal.xhtml">
 	<ui:define name="centro">
-		<p:panel id="panelNovoUsuario" header="Novo Usuário">
+		<p:panel style="border: none">
+			<h2>Novo Usuário</h2>
+			<p:separator />
 			<h:form id="formNovoUsuario">
 				<h:panelGrid id="panelGridUsuario" columns="3">
 					<p:outputLabel id="olNome" for="itNome" value="Nome" />
@@ -49,10 +51,8 @@
 					<p:message for="itDataNascimento" display="icon" />
 					
 					<p:outputLabel id="olFlagAtivo" for="sorFlagAtivo" value="Ativo" />
-					<p:selectOneRadio id="sorFlagAtivo"
-						value="#{usuarioBean.usuario.flagAtivo}"
-						disabled="#{usuarioBean.usuario.flagAtivo == null ? true : false}"
-						required="true">
+					<p:selectOneRadio id="sorFlagAtivo" value="#{usuarioBean.usuario.flagAtivo}"
+						disabled="#{usuarioBean.usuario.flagAtivo == null ? true : false}">
 						<f:selectItem itemLabel="Sim" itemValue="S" />
 						<f:selectItem itemLabel="Não" itemValue="N" />
 					</p:selectOneRadio>
@@ -65,7 +65,9 @@
 			</h:form>
 		</p:panel>
 
-		<p:panel id="painelGridUsuario" header="Usuários Cadastrados">
+		<p:panel style="border: none">
+			<h2>Usuários Cadastrados</h2>
+			<p:separator />
 			<h:form id="formGridUsuario">
 				<p:dataTable var="usuario" value="#{usuarioBean.usuarios}" 
 					rowKey="#{usuario.idUsuario}" emptyMessage="Sem registros cadastrados">
@@ -89,7 +91,7 @@
 							<f:setPropertyActionListener value="#{usuario}" target="#{usuarioBean.usuario}"/>
 							<f:setPropertyActionListener value="#{usuario.perfil.idPerfil}" target="#{usuarioBean.idPerfil}"/>
 						</p:commandButton> |
-						<p:commandButton title="Remover Permanentemente" update="formGridUsuario"
+						<p:commandButton title="Remover Permanentemente" update="formGridUsuario, formNovoUsuario"
 							action="#{usuarioBean.removerPermanentemente}" icon="ui-icon-trash">
 							<f:setPropertyActionListener value="#{usuario}" target="#{usuarioBean.usuario}"/>
 							<p:confirm header="Exclusão" message="Tem certeza que deseja excluir o registro?" 

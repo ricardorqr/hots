@@ -35,7 +35,6 @@ public class PerfiltransacaoBean extends GenericBean implements Serializable {
 			
 			limparTela();
 		} catch (Exception e) {
-			e.printStackTrace();
 			addMensagemFATAL(e.getLocalizedMessage());
 		}
 	}

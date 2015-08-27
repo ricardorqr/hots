@@ -21,6 +21,7 @@ public class TransacaoBean extends GenericBean implements Serializable {
 	private TransacaoNegocio negocio;
 	private Transacao transacao = new Transacao();
 	private List<Transacao> transacoes;
+	private List<Transacao> filtroTabela;
 
 	public void salvar() {
 		try {
@@ -65,6 +66,14 @@ public class TransacaoBean extends GenericBean implements Serializable {
 
 	public void setTransacao(Transacao transacao) {
 		this.transacao = transacao;
+	}
+
+	public List<Transacao> getFiltroTabela() {
+		return filtroTabela;
+	}
+
+	public void setFiltroTabela(List<Transacao> filtroTabela) {
+		this.filtroTabela = filtroTabela;
 	}
 
 }
