@@ -4,7 +4,9 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui" template="/template/principal.xhtml">
 	<ui:define name="centro">
-		<p:panel header="Novo Herói">
+		<p:panel style="border: none">
+			<h2>Novo Herói</h2>
+			<p:separator />
 			<h:form id="formNovoHeroi">
 				<h:panelGrid id="panelGrigNovoHeroi" columns="3">
 					<p:outputLabel id="olFuncao" for="somFuncao" value="Função" />
@@ -49,10 +51,8 @@
 					<p:message for="itComplexidade" display="icon" />
 					
 					<p:outputLabel id="olFlagAtivo" for="sorFlagAtivo" value="Ativo" />
-					<p:selectOneRadio id="sorFlagAtivo"
-						value="#{heroiBean.heroi.flagAtivo}"
-						disabled="#{heroiBean.heroi.idHeroi== null ? true : false}"
-						required="true">
+					<p:selectOneRadio id="sorFlagAtivo" value="#{heroiBean.heroi.flagAtivo}"
+						disabled="#{heroiBean.heroi.idHeroi== null ? true : false}">
 						<f:selectItem itemLabel="Sim" itemValue="S" />
 						<f:selectItem itemLabel="Não" itemValue="N" />
 					</p:selectOneRadio>
@@ -65,29 +65,40 @@
 			</h:form>
 		</p:panel>
 		
-		<p:panel id="painelGridHerois" header="Heróis Cadastrados">
+		<p:panel style="border: none">
+			<h2>Lista de Heróis</h2>
+			<p:separator />
 			<h:form id="formGridHerois">
-				<p:dataTable var="heroi" value="#{heroiBean.herois}" 
-					rowKey="#{heroi.idHeroi}" emptyMessage="Sem registros cadastradosdos">
-					<p:column headerText="Nome" sortBy="#{heroi.nome}">
+				<p:dataTable var="heroi" value="#{heroiBean.herois}" paginator="true" rows="5"
+					emptyMessage="Sem registros cadastradosdos" rowsPerPageTemplate="5, 50, 100"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					widgetVar="tabelaHeroi" stickyHeader="true" filteredValue="#{heroiBean.filtroTabela}">
+					<p:column filterBy="#{heroi.nome}" headerText="Nome" sortBy="#{heroi.nome}" 
+						filterMatchMode="contains">
 						<h:outputText value="#{heroi.nome}" />
 					</p:column>
-					<p:column headerText="Função" sortBy="#{heroi.funcao.deFuncao}">
+					<p:column filterBy="#{heroi.funcao.deFuncao}" headerText="Função" 
+						sortBy="#{heroi.funcao.deFuncao}" filterMatchMode="contains">
 						<h:outputText value="#{heroi.funcao.deFuncao}" />
 					</p:column>
-					<p:column headerText="Universo" sortBy="#{heroi.universo.deUniverso}">
+					<p:column filterBy="#{heroi.universo.deUniverso}" headerText="Universo" 
+						sortBy="#{heroi.universo.deUniverso}" filterMatchMode="contains">
 						<h:outputText value="#{heroi.universo.deUniverso}" />
 					</p:column>
-					<p:column headerText="Dano" sortBy="#{heroi.dano}">
+					<p:column filterBy="#{heroi.dano}" headerText="Dano" sortBy="#{heroi.dano}" 
+						filterMatchMode="contains">
 						<h:outputText value="#{heroi.dano}" />
 					</p:column>
-					<p:column headerText="Utilidade" sortBy="#{heroi.utilidade}">
+					<p:column filterBy="#{heroi.utilidade}" headerText="Utilidade" 
+						sortBy="#{heroi.utilidade}" filterMatchMode="contains">
 						<h:outputText value="#{heroi.utilidade}" />
 					</p:column>
-					<p:column headerText="Sobrevivência" sortBy="#{heroi.sobrevivencia}">
+					<p:column filterBy="#{heroi.sobrevivencia}" headerText="Sobrevivência" 
+						sortBy="#{heroi.sobrevivencia}" filterMatchMode="contains">
 						<h:outputText value="#{heroi.sobrevivencia}" />
 					</p:column>
-					<p:column headerText="Complexidade" sortBy="#{heroi.complexidade}">
+					<p:column filterBy="#{heroi.complexidade}" headerText="Complexidade" 
+						sortBy="#{heroi.complexidade}" filterMatchMode="contains">
 						<h:outputText value="#{heroi.complexidade}" />
 					</p:column>
 					<p:column headerText="Ativo">
@@ -99,7 +110,7 @@
 							<f:setPropertyActionListener value="#{heroi.funcao.idFuncao}" target="#{heroiBean.idFuncao}"/>
 							<f:setPropertyActionListener value="#{heroi.universo.idUniverso}" target="#{heroiBean.idUniverso}"/>
 						</p:commandButton> |
-						<p:commandButton title="Remover Permanentemente" update="formGridHerois"
+						<p:commandButton title="Remover Permanentemente" update="formGridHerois, formNovoHeroi"
 							action="#{heroiBean.removerPermanentemente}" icon="ui-icon-trash">
 							<f:setPropertyActionListener value="#{heroi}" target="#{heroiBean.heroi}"/>
 							<p:confirm header="Exclusão" message="Tem certeza que deseja excluir o registro?" 

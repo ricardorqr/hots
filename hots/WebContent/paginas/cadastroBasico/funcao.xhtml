@@ -4,7 +4,9 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui" template="/template/principal.xhtml">
 	<ui:define name="centro">
-		<p:panel id="panelNovaFuncao" header="Nova Função">
+		<p:panel style="border: none">
+			<h2>Nova Função</h2>
+			<p:separator />
 			<h:form id="formNovaFuncao">
 				<h:panelGrid id="panelGridFuncao" columns="3">
 					<p:outputLabel id="olFuncao" for="itFuncao" value="Função" />
@@ -13,10 +15,8 @@
 					<p:message for="itFuncao" display="icon" />
 
 					<p:outputLabel id="olFlagAtivo" for="sorFlagAtivo" value="Ativo" />
-					<p:selectOneRadio id="sorFlagAtivo"
-						value="#{funcaoBean.funcao.flagAtivo}"
-						disabled="#{funcaoBean.funcao.idFuncao == null ? true : false}"
-						required="true">
+					<p:selectOneRadio id="sorFlagAtivo" value="#{funcaoBean.funcao.flagAtivo}"
+						disabled="#{funcaoBean.funcao.idFuncao == null ? true : false}">
 						<f:selectItem itemLabel="Sim" itemValue="S" />
 						<f:selectItem itemLabel="Não" itemValue="N" />
 					</p:selectOneRadio>
@@ -29,7 +29,9 @@
 			</h:form>
 		</p:panel>
 
-		<p:panel id="painelGridFuncoes" header="Funções Cadastradas">
+		<p:panel style="border: none">
+			<h2>Funções Cadastradas</h2>
+			<p:separator />
 			<h:form id="formGridFuncoes">
 				<p:dataTable var="funcao" value="#{funcaoBean.funcoes}" 
 					rowKey="#{funcao.idFuncao}" emptyMessage="Sem registros cadastradosdos">
@@ -43,7 +45,7 @@
 						<p:commandButton title="Editar" update="formNovaFuncao" icon="ui-icon-pencil">
 							<f:setPropertyActionListener value="#{funcao}" target="#{funcaoBean.funcao}"/>
 						</p:commandButton> |
-						<p:commandButton title="Remover Permanentemente" update="formGridFuncoes"
+						<p:commandButton title="Remover Permanentemente" update="formGridFuncoes, formNovaFuncao"
 							action="#{funcaoBean.removerPermanentemente}" icon="ui-icon-trash">
 							<f:setPropertyActionListener value="#{funcao}" target="#{funcaoBean.funcao}"/>
 							<p:confirm header="Exclusão" message="Tem certeza que deseja excluir o registro?" 

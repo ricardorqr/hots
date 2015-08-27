@@ -4,7 +4,9 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui" template="/template/principal.xhtml">
 	<ui:define name="centro">
-		<p:panel id="panelNovoPerfil" header="Novo Perfil">
+		<p:panel style="border: none">
+			<h2>Novo Perfil</h2>
+			<p:separator />
 			<h:form id="formNovoPerfil">
 				<h:panelGrid id="panelGridPerfil" columns="3">
 					<p:outputLabel id="olPerfil" for="itPerfil" value="Perfil" />
@@ -16,16 +18,15 @@
 					<h:panelGrid columns="1">
 						<p:inputTextarea id="itObservacao" value="#{perfilBean.perfil.observacao}"
 							label="Observação" rows="5" counter="display" maxlength="500" 
-							counterTemplate="{0} caracteres restantes" autoResize="false"/>
+							counterTemplate="{0} caracteres restantes" autoResize="false"
+							style="width: 108%"/>
 						<h:outputText id="display" />
 					</h:panelGrid>
 					<p:message for="itObservacao" display="icon" />
 
 					<p:outputLabel id="olFlagAtivo" for="sorFlagAtivo" value="Ativo" />
-					<p:selectOneRadio id="sorFlagAtivo"
-						value="#{perfilBean.perfil.flagAtivo}"
-						disabled="#{perfilBean.perfil.flagAtivo == null ? true : false}"
-						required="true">
+					<p:selectOneRadio id="sorFlagAtivo" value="#{perfilBean.perfil.flagAtivo}"
+						disabled="#{perfilBean.perfil.flagAtivo == null ? true : false}">
 						<f:selectItem itemLabel="Sim" itemValue="S" />
 						<f:selectItem itemLabel="Não" itemValue="N" />
 					</p:selectOneRadio>
@@ -38,7 +39,9 @@
 			</h:form>
 		</p:panel>
 
-		<p:panel id="painelGridPerfil" header="Perfis Cadastrados">
+		<p:panel style="border: none">
+			<h2>Perfis Cadastrados</h2>
+			<p:separator />
 			<h:form id="formGridPerfil">
 				<p:dataTable var="perfil" value="#{perfilBean.perfis}" 
 					rowKey="#{perfil.idPerfil}" emptyMessage="Sem registros cadastrados">
@@ -52,7 +55,7 @@
 						<p:commandButton title="Editar" update="formNovoPerfil" icon="ui-icon-pencil">
 							<f:setPropertyActionListener value="#{perfil}" target="#{perfilBean.perfil}"/>
 						</p:commandButton> |
-						<p:commandButton title="Remover Permanentemente" update="formGridPerfil"
+						<p:commandButton title="Remover Permanentemente" update="formGridPerfil, formNovoPerfil"
 							action="#{perfilBean.removerPermanentemente}" icon="ui-icon-trash">
 							<f:setPropertyActionListener value="#{perfil}" target="#{perfilBean.perfil}"/>
 							<p:confirm header="Exclusão" message="Tem certeza que deseja excluir o registro?" 

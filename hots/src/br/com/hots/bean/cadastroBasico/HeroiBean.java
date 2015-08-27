@@ -23,6 +23,7 @@ public class HeroiBean extends GenericBean implements Serializable {
 	private Integer idFuncao;
 	private Integer idUniverso;
 	private List<Heroi> herois;
+	private List<Heroi> filtroTabela;
 	
 	public void salvar() {
 		try {
@@ -91,6 +92,14 @@ public class HeroiBean extends GenericBean implements Serializable {
 
 	public void setIdUniverso(Integer idUniverso) {
 		this.idUniverso = idUniverso;
+	}
+
+	public List<Heroi> getFiltroTabela() {
+		return filtroTabela;
+	}
+
+	public void setFiltroTabela(List<Heroi> filtroTabela) {
+		this.filtroTabela = filtroTabela;
 	}
 	
 }

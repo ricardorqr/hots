@@ -4,12 +4,16 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui" template="/template/principal.xhtml">
 	<ui:define name="centro">
-		<p:panel id="panelNovoJogador" header="Novo Jogador">
+		<p:panel style="border: none">
+			<h2>Perfil x Transação</h2>
+			<p:separator />
 			<h:form id="formNovoJogador">
 				<h:panelGrid id="panelGridJogador" columns="3">
 					<p:outputLabel id="olPerfil" for="somPerfil" value="Perfil" />
-					<p:selectOneMenu id="somPerfil" value="#{perfiltransacaoBean.idPerfil}" required="true">
-						<p:ajax listener="#{perfiltransacaoBean.listarTransacoesPorPerfil()}" update="pkPerfiltransacao" />
+					<p:selectOneMenu id="somPerfil" value="#{perfiltransacaoBean.idPerfil}" 
+						required="true">
+						<p:ajax listener="#{perfiltransacaoBean.listarTransacoesPorPerfil()}" 
+							update="pkPerfiltransacao" />
 						<f:selectItem itemLabel=" -- Selecione -- " itemValue="" />
             			<f:selectItems value="#{perfilBean.listaPerfilAtivo}" var="perfil" 
             				itemLabel="#{perfil.dePerfil}" itemValue="#{perfil.idPerfil}" />
@@ -18,9 +22,9 @@
 				</h:panelGrid>
 					
 				<h:panelGrid columns="1">
-					<p:pickList id="pkPerfiltransacao" value="#{perfiltransacaoBean.transacoes}" var="transacao" 
-						itemLabel="#{transacao.deTransacao}" itemValue="#{transacao}" converter="transacaoConverter"
-						style="">
+					<p:pickList id="pkPerfiltransacao" value="#{perfiltransacaoBean.transacoes}" 
+						var="transacao" itemLabel="#{transacao.deTransacao}" itemValue="#{transacao}" 
+						converter="transacaoConverter" style="ui-picklist-list" >
 						<f:facet name="sourceCaption">Transações Permitidas</f:facet>
 	        			<f:facet name="targetCaption">Transações Bloqueadas</f:facet>
 					</p:pickList>
@@ -31,6 +35,5 @@
 				<p:button value="Cancelar" outcome="/template/principal.xhtml" icon="ui-icon-close" />
 			</h:form>
 		</p:panel>
-
 	</ui:define>
 </ui:composition>

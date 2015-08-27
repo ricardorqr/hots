@@ -21,10 +21,11 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.envers.Audited;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import br.com.hots.validation.EmailJSF;
 
@@ -100,7 +101,7 @@ public class Usuario implements java.io.Serializable {
 		this.idUsuario = idUsuario;
 	}
 
-	@NotEmpty(message = "O campo perfil é obrigatório")
+	@NotNull(message = "O campo perfil é obrigatório")
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idPerfil", nullable = false)
 	public Perfil getPerfil() {

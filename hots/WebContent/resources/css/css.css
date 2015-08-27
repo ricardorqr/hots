@@ -4,3 +4,8 @@
 	bottom: 0px;
     text-align: center;
 }
+
+.ui-picklist-list {
+	height:300px !important;
+	width:200px !important;
+}

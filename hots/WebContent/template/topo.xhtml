@@ -11,9 +11,12 @@
 			</p:submenu>
 			
 			<shiro:hasAnyPermission name="jogo">
-				<p:submenu label="Jogo" icon="ui-icon-document">
+				<p:submenu label="Jogo" icon="ui-icon-contact">
 					<shiro:hasAnyPermission name="jogador">
 						<p:menuitem value="Jogador" outcome="/paginas/jogo/jogador.xhtml" />
+					</shiro:hasAnyPermission>
+					<shiro:hasAnyPermission name="partida">
+						<p:menuitem value="Partida" outcome="/paginas/jogo/partida.xhtml" />
 					</shiro:hasAnyPermission>
 				</p:submenu>
 			</shiro:hasAnyPermission>
@@ -33,7 +36,7 @@
 			</shiro:hasAnyPermission>
 			
 			<shiro:hasAnyPermission name="seguranca">
-				<p:submenu label="Segurança" icon="ui-icon-document">
+				<p:submenu label="Segurança" icon="ui-icon-locked">
 					<shiro:hasAnyPermission name="perfil">
 						<p:menuitem value="Prefil" outcome="/paginas/seguranca/perfil.xhtml" />
 					</shiro:hasAnyPermission>

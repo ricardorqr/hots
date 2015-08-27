@@ -4,7 +4,9 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui" template="/template/principal.xhtml">
 	<ui:define name="centro">
-		<p:panel id="panelNovoUniverso" header="Novo Universo">
+		<p:panel style="border: none">
+			<h2>Novo Universo</h2>
+			<p:separator />
 			<h:form id="formNovoUniverso">
 				<h:panelGrid id="panelGridUniverso" columns="3">
 					<p:outputLabel id="olUniverso" for="itUniverso" value="Universo" />
@@ -13,10 +15,8 @@
 					<p:message for="itUniverso" display="icon" />
 
 					<p:outputLabel id="olFlagAtivo" for="sorFlagAtivo" value="Ativo" />
-					<p:selectOneRadio id="sorFlagAtivo"
-						value="#{universoBean.universo.flagAtivo}"
-						disabled="#{universoBean.universo.idUniverso== null ? true : false}"
-						required="true">
+					<p:selectOneRadio id="sorFlagAtivo" value="#{universoBean.universo.flagAtivo}"
+						disabled="#{universoBean.universo.idUniverso== null ? true : false}">
 						<f:selectItem itemLabel="Sim" itemValue="S" />
 						<f:selectItem itemLabel="Não" itemValue="N" />
 					</p:selectOneRadio>
@@ -29,7 +29,9 @@
 			</h:form>
 		</p:panel>
 
-		<p:panel id="painelGridUniversos" header="Universos Cadastrados">
+		<p:panel style="border: none">
+			<h2>Universos Cadastrados</h2>
+			<p:separator />
 			<h:form id="formGridUniversos">
 				<p:dataTable var="universo" value="#{universoBean.universos}" 
 					rowKey="#{universo.idUniverso}" emptyMessage="Sem registros cadastrados">
@@ -43,7 +45,7 @@
 						<p:commandButton title="Editar" update="formNovoUniverso" icon="ui-icon-pencil">
 							<f:setPropertyActionListener value="#{universo}" target="#{universoBean.universo}"/>
 						</p:commandButton> |
-						<p:commandButton title="Remover Permanentemente" update="formGridUniversos"
+						<p:commandButton title="Remover Permanentemente" update="formGridUniversos, formNovoUniverso"
 							action="#{universoBean.removerPermanentemente}" icon="ui-icon-trash">
 							<f:setPropertyActionListener value="#{universo}" target="#{universoBean.universo}"/>
 							<p:confirm header="Exclusão" message="Tem certeza que deseja excluir o registro?" 
