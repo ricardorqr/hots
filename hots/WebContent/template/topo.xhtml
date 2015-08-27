@@ -34,14 +34,14 @@
 			
 			<shiro:hasAnyPermission name="seguranca">
 				<p:submenu label="Segurança" icon="ui-icon-document">
-					<shiro:hasAnyPermission name="prefil">
-						<p:menuitem value="Prefil" outcome="/paginas/seguranca/prefil.xhtml" />
+					<shiro:hasAnyPermission name="perfil">
+						<p:menuitem value="Prefil" outcome="/paginas/seguranca/perfil.xhtml" />
 					</shiro:hasAnyPermission>
 					<shiro:hasAnyPermission name="transacao">
 						<p:menuitem value="Página" outcome="/paginas/seguranca/transacao.xhtml" />
 					</shiro:hasAnyPermission>
 					<shiro:hasAnyPermission name="prefilTransacao">
-						<p:menuitem value="Prefil x Página" outcome="/paginas/seguranca/prefilTransacao.xhtml" />
+						<p:menuitem value="Prefil x Página" outcome="/paginas/seguranca/perfilTransacao.xhtml" />
 					</shiro:hasAnyPermission>
 					<p:separator />
 					<shiro:hasAnyPermission name="usuario">
