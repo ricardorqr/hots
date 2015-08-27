@@ -12,6 +12,8 @@
 	</application>
 	
 	<!-- Phaselisteners de verificação de usuario logado (forma manual)
+		 Este PhaseListener deixou de ser usado com a implementação da camada de segurança com Shiro.
+		 Agora o framework é o responsevel pela sessão, autorização, permissao e tudo ligado a segurança.
 	<lifecycle>
 		<phase-listener>
 			br.com.hots.listener.AutorizadorListener

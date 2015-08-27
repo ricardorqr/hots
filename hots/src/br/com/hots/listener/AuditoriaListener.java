@@ -1,4 +1,4 @@
-package br.com.hots.auditoria;
+package br.com.hots.listener;
 
 import java.io.Serializable;
 

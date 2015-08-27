@@ -16,7 +16,7 @@ import org.hibernate.envers.RevisionEntity;
 import org.hibernate.envers.RevisionNumber;
 import org.hibernate.envers.RevisionTimestamp;
 
-import br.com.hots.auditoria.AuditoriaListener;
+import br.com.hots.listener.AuditoriaListener;
 
 @Entity
 @Table(name="auditoriaRevisao")
