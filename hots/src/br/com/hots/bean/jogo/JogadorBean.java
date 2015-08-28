@@ -56,6 +56,14 @@ public class JogadorBean extends GenericBean implements Serializable {
 		return jogadores;
 	}
 	
+	public List<Jogador> getListaTodosAtivos() {
+		if (jogadores == null || jogadores.isEmpty()) {
+			jogadores = negocio.getListaTodosAtivos();
+		}
+		
+		return jogadores;
+	}
+	
 	private void limparTela() {
 		jogador = new Jogador();
 		jogadores= negocio.getListaTodos();
